@@ -35,12 +35,11 @@ public class AudioManager : MonoBehaviour
     public void setSound()
     {
         //runs at start of program
-        masterVolume = 100;
-        musicVolume = 100;
-        effectsVolume = 100;
+        masterVolume = 50;
+        musicVolume = 40;
+        effectsVolume = 40;
 
-        musicSource.volume = 1;
-        effectsSource.volume = 1;
+        ApplyVolumes(masterVolume, musicVolume, effectsVolume);
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
@@ -69,10 +68,12 @@ public class AudioManager : MonoBehaviour
 
     public void ApplyVolumes(float master, float music, float sfx)
     {
-        AudioListener.volume = master;
-        musicSource.volume = music;
-        effectsSource.volume = sfx;
-        Debug.Log($"[AudioManager] Volumes applied: Master={master}, Music={music}, SFX={sfx}");
+        float masterNormalized = master / 100f;
+        float musicNormalized = music / 100f;
+        float effectsNormalized = sfx / 100f;
+
+        musicSource.volume = musicNormalized * masterNormalized;
+        effectsSource.volume = effectsNormalized * masterNormalized;
     }
 
     public float returnMasterVolume()

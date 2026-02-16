@@ -13,11 +13,29 @@ public class AudioLibrary : ScriptableObject
     public AudioClip upgradeSound;
 
     // Enum for easy dropdown selection
+    public enum Music
+    {
+        MainMenu,
+        GameMusic
+    }
+
+    // Enum for easy dropdown selection
     public enum SFX
     {
         ButtonClick,
         ButtonHighlight,
         Upgrade
+    }
+
+    // Helper to get clip from enum
+    public AudioClip GetMusic(Music song)
+    {
+        switch (song)
+        {
+            case Music.MainMenu: return mainMenuMusic;
+            case Music.GameMusic: return gameMusic;
+            default: return null;
+        }
     }
 
     // Helper to get clip from enum
