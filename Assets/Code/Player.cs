@@ -3,20 +3,24 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float playerSpeed;
+    public float moveSpeed = 50.0f;
+    public float moveAcceleration = 15.0f;
 
     InputAction moveAction;
+    Rigidbody2D rigidBody;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        rigidBody = GetComponent<Rigidbody2D>();
+
+        rigidBody.linearDamping = 0.0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        transform.position += Time.deltaTime * playerSpeed * (new Vector3(input.x, input.y)).normalized;
+        rigidBody.AddForce(moveAcceleration * input);
+        rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
     }
 }
