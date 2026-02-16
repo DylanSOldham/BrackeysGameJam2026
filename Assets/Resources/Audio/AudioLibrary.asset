@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary
   mainMenuMusic: {fileID: 8300000, guid: c70d74b454fcb824f9cc8b00dcc1f055, type: 3}
-  gameMusic: {fileID: 0}
+  gameMusic: {fileID: 8300000, guid: 6679afa391dd4264cbf0924ab3eba3ad, type: 3}
   buttonClick: {fileID: 8300000, guid: 176663487ee370c4bbd601f48be495c4, type: 3}
   buttonHighlight: {fileID: 8300000, guid: 02e06a9bc2b049c42a3481c890fecdda, type: 3}
   upgradeSound: {fileID: 0}
