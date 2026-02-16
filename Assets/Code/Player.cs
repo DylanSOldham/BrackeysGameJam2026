@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private InputAction moveAction;
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private Vector2 input;
 
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,6 +44,10 @@ public class Player : MonoBehaviour
             rigidBody.AddForce(moveAcceleration * input);
             rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
         }
+
+        
+        spriteRenderer.flipX = animator.GetBool("moveLeft");
+        
 
         //if(rigidBody.linearVelocity == Vector2.zero)
         //{
