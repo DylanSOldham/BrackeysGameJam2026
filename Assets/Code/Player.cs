@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Vector2 input = moveAction.ReadValue<Vector2>();
+        Vector2 input = moveAction.ReadValue<Vector2>().normalized;
         rigidBody.AddForce(moveAcceleration * input);
         rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
     }
