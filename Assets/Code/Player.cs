@@ -13,14 +13,17 @@ public class Player : MonoBehaviour
     {
         moveAction = InputSystem.actions.FindAction("Move");
         rigidBody = GetComponent<Rigidbody2D>();
-
-        rigidBody.linearDamping = 0.0f;
     }
 
     void Update()
     {
         Vector2 input = moveAction.ReadValue<Vector2>().normalized;
-        rigidBody.AddForce(moveAcceleration * input);
-        rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
+        if (input.magnitude < 0.01) {
+            rigidBody.linearVelocity = Vector2.zero;
+        } 
+        else {
+            rigidBody.AddForce(moveAcceleration * input);
+            rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
+        }
     }
 }
