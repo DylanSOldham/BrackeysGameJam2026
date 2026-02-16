@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sources")]
     public AudioSource musicSource;
-    public AudioSource sfxSource;
+    public AudioSource effectsSource;
 
     [Header("Library")]
     public AudioLibrary audioLibrary;
@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private float masterVolume;
     [SerializeField] private float musicVolume;
-    [SerializeField] private float sfxVolume;
+    [SerializeField] private float effectsVolume;
 
 
     private void Awake()
@@ -28,6 +28,19 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        setSound();
+    }
+
+    public void setSound()
+    {
+        //runs at start of program
+        masterVolume = 100;
+        musicVolume = 100;
+        effectsVolume = 100;
+
+        musicSource.volume = 1;
+        effectsSource.volume = 1;
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
@@ -43,7 +56,7 @@ public class AudioManager : MonoBehaviour
     {
         if (clip != null)
         {
-            sfxSource.PlayOneShot(clip);
+            effectsSource.PlayOneShot(clip);
             Debug.Log($"[AudioManager] Playing SFX: {clip.name}");
         }
     }
@@ -58,8 +71,48 @@ public class AudioManager : MonoBehaviour
     {
         AudioListener.volume = master;
         musicSource.volume = music;
-        sfxSource.volume = sfx;
+        effectsSource.volume = sfx;
         Debug.Log($"[AudioManager] Volumes applied: Master={master}, Music={music}, SFX={sfx}");
     }
 
+    public float returnMasterVolume()
+    {
+        return masterVolume;
+    }
+    public float returnMusicVolume()
+    {
+        return musicVolume;
+    }
+    public float returnEffectsVolume()
+    {
+        return effectsVolume;
+    }
+
+    public void changeMasterVolume(float num)
+    {
+        masterVolume = num;
+        UpdateVolumes();
+    }
+
+    public void changeMusicVolume(float num)
+    {
+        musicVolume = num;
+        UpdateVolumes();
+    }
+
+    public void changeEffectsVolume(float num)
+    {
+        effectsVolume = num;
+        UpdateVolumes();
+    }
+
+    private void UpdateVolumes()
+    {
+        float masterNormalized = masterVolume / 100f;
+        float musicNormalized = musicVolume / 100f;
+        float effectsNormalized = effectsVolume / 100f;
+
+        musicSource.volume = musicNormalized * masterNormalized;
+        effectsSource.volume = effectsNormalized * masterNormalized;
+    }
 }
