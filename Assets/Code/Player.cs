@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
         animator.SetBool("moveRight", input.x > 0f);
         animator.SetBool("moveLeft", input.x < 0f);
+        animator.SetBool("moveUp", input.y > 0f);
+        animator.SetBool("moveDown", input.y < 0f);
         animator.SetBool("isIdle", (Mathf.Abs(input.x) + Mathf.Abs(input.y)) < 0.01f);
         //animator.Set("MoveY", input.y);
         //animator.SetFloat("Speed", input.sqrMagnitude);
