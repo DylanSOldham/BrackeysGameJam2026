@@ -26,28 +26,29 @@ public class Player : MonoBehaviour
     {
         input = moveAction.ReadValue<Vector2>().normalized;
 
-        animator.SetBool("moveRight", input.x > 0f);
-        animator.SetBool("moveLeft", input.x < 0f);
-        animator.SetBool("moveUp", input.y > 0f);
-        animator.SetBool("moveDown", input.y < 0f);
-        animator.SetBool("isIdle", (Mathf.Abs(input.x) + Mathf.Abs(input.y)) < 0.01f);
+        animator.SetBool("moveRight", rigidBody.linearVelocityX > 0f);
+        animator.SetBool("moveLeft", rigidBody.linearVelocityX < 0f);
+        animator.SetBool("moveUp", rigidBody.linearVelocityY > 0f);
+        animator.SetBool("moveDown", rigidBody.linearVelocityY < 0f);
+        animator.SetBool("isIdle", (Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) < 0.01f);
         //animator.Set("MoveY", input.y);
         //animator.SetFloat("Speed", input.sqrMagnitude);
     }
 
     void FixedUpdate()
     {
-        if (input.magnitude < 0.01f)
+        rigidBody.AddForce(moveAcceleration * input);
+        if (Mathf.Abs(input.x) < 0.01f)
         {
-            rigidBody.linearVelocity = Vector2.zero;
+            rigidBody.linearVelocityX = 0.0f;
         }
-        else
+        if (Mathf.Abs(input.y) < 0.01f) 
         {
-            rigidBody.AddForce(moveAcceleration * input);
-            rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
+            rigidBody.linearVelocityY = 0.0f;
         }
+        rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
 
-        
+
         spriteRenderer.flipX = animator.GetBool("moveLeft");
         
 
