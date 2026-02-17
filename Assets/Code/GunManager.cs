@@ -36,14 +36,6 @@ public class GunAnimation : MonoBehaviour
         bool moveUp = playerAnimator.GetBool("moveUp");
         bool moveDown = playerAnimator.GetBool("moveDown");
 
-        if(moveLeft || moveRight || moveUp || moveDown)
-        {
-            Debug.Log("left: " + moveLeft);
-            Debug.Log("right: " + moveRight);
-            Debug.Log("Up: " + moveUp);
-            Debug.Log("Down: " + moveDown);
-        }
-
         // Reset all first
         myAnimator.SetBool("moveLeft", false);
         myAnimator.SetBool("moveRight", false);
