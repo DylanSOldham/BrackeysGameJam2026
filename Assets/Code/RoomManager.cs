@@ -9,6 +9,8 @@ public class RoomManager : MonoBehaviour
     const float ROOM_WIDTH = 14;
     const float ROOM_HEIGHT = 10;
 
+    public GameObject player;
+    public GameObject gameCamera;
     public GameObject roomPrefab;
     public Tile doorTile;
 
@@ -67,6 +69,11 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
-        
+        activeRoom.x = (int)(player.transform.position.x / ROOM_WIDTH + 0.5);
+        activeRoom.y = (int)(player.transform.position.y / ROOM_HEIGHT + 0.5);
+
+        Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
+        gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.1f);
     }
+
 }
