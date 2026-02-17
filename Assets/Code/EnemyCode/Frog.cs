@@ -41,6 +41,13 @@ public class Frog : Enemy
             }
 
             transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+
+            animator.SetBool("moveRight", direction.x > 0f);
+            animator.SetBool("moveLeft", direction.x < 0f);
+            animator.SetBool("moveUp", direction.y > 0f);
+            animator.SetBool("moveDown", direction.y < 0f);
+
+            spriteRenderer.flipX = animator.GetBool("moveLeft");
         }
 
     }

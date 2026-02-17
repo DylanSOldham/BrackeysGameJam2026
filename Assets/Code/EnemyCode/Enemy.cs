@@ -9,11 +9,15 @@ public abstract class Enemy : MonoBehaviour
 
     protected float currentHealth;
     protected Transform player;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Update()
