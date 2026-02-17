@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RoomManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class RoomManager : MonoBehaviour
     const float ROOM_HEIGHT = 10;
 
     public GameObject roomPrefab;
+    public Tile doorTile;
 
     private class Room
     {
@@ -17,6 +19,7 @@ public class RoomManager : MonoBehaviour
         public bool doorRight = false;
         public bool doorUp    = false;
         public bool doorDown  = false;
+        public GameObject obj = null;
     }
 
     Room[,] rooms = new Room[DUNGEON_SIZE, DUNGEON_SIZE];
@@ -42,6 +45,21 @@ public class RoomManager : MonoBehaviour
                 {
                     GameObject roomObject = Instantiate(roomPrefab);
                     roomObject.transform.position = new Vector3(ROOM_WIDTH * (i - DUNGEON_SIZE / 2.0f + 0.5f), ROOM_HEIGHT * j, 0.0f);
+                    room.obj = roomObject;
+
+                    Tilemap tilemap = roomObject.GetComponentInChildren<Tilemap>();
+
+                    tilemap.SetTile(new Vector3Int(6, 0, 0), null);
+                    tilemap.SetTile(new Vector3Int(6, -1, 0), null);
+
+                    tilemap.SetTile(new Vector3Int(-7, 0, 0), null);
+                    tilemap.SetTile(new Vector3Int(-7, -1, 0), null);
+
+                    tilemap.SetTile(new Vector3Int(0, -5, 0), null);
+                    tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
+
+                    tilemap.SetTile(new Vector3Int(0, 4, 0), null);
+                    tilemap.SetTile(new Vector3Int(-1, 4, 0), null);
                 }
             }
         }

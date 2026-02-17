@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
   roomPrefab: {fileID: 3984411681335074231, guid: d3c88b94150f859458658e30c146d307, type: 3}
+  doorTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
 --- !u!4 &204545476
 Transform:
   m_ObjectHideFlags: 0
