@@ -46,34 +46,57 @@ public class RoomManager : MonoBehaviour
                 if (room.exists)
                 {
                     GameObject roomObject = Instantiate(roomPrefab);
-                    roomObject.transform.position = new Vector3(ROOM_WIDTH * (i - DUNGEON_SIZE / 2.0f + 0.5f), ROOM_HEIGHT * j, 0.0f);
+                    roomObject.SetActive(false);
+                    roomObject.transform.position = new Vector3(ROOM_WIDTH * i, ROOM_HEIGHT * j, 0.0f);
                     room.obj = roomObject;
 
                     Tilemap tilemap = roomObject.GetComponentInChildren<Tilemap>();
 
-                    tilemap.SetTile(new Vector3Int(6, 0, 0), null);
-                    tilemap.SetTile(new Vector3Int(6, -1, 0), null);
-
-                    tilemap.SetTile(new Vector3Int(-7, 0, 0), null);
-                    tilemap.SetTile(new Vector3Int(-7, -1, 0), null);
-
-                    tilemap.SetTile(new Vector3Int(0, -5, 0), null);
-                    tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
-
-                    tilemap.SetTile(new Vector3Int(0, 4, 0), null);
-                    tilemap.SetTile(new Vector3Int(-1, 4, 0), null);
+                    if (i + 1 < DUNGEON_SIZE && rooms[i + 1, j].exists)
+                    {
+                        tilemap.SetTile(new Vector3Int(6, 0, 0), null);
+                        tilemap.SetTile(new Vector3Int(6, -1, 0), null);
+                    }
+                    if (i - 1 >= 0 && rooms[i - 1, j].exists)
+                    {
+                        tilemap.SetTile(new Vector3Int(-7, 0, 0), null);
+                        tilemap.SetTile(new Vector3Int(-7, -1, 0), null);
+                    }
+                    if (j + 1 < DUNGEON_SIZE && rooms[i, j + 1].exists)
+                    {
+                        tilemap.SetTile(new Vector3Int(0, 4, 0), null);
+                        tilemap.SetTile(new Vector3Int(-1, 4, 0), null);
+                    }
+                    if (j - 1 >= 0 && rooms[i, j - 1].exists)
+                    {
+                        tilemap.SetTile(new Vector3Int(0, -5, 0), null);
+                        tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
+                    }
                 }
             }
         }
+
+        Debug.Log(activeRoom);
+        rooms[activeRoom.x, activeRoom.y].obj.SetActive(true);
+
+        player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, player.transform.position.z);
+        gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
     }
 
     void Update()
     {
-        activeRoom.x = (int)(player.transform.position.x / ROOM_WIDTH + 0.5);
+        Vector2Int oldActiveRoom = activeRoom;
+        activeRoom.x = Mathf.FloorToInt(player.transform.position.x / ROOM_WIDTH + 0.5f);
         activeRoom.y = (int)(player.transform.position.y / ROOM_HEIGHT + 0.5);
-
+        if (oldActiveRoom != activeRoom)
+        {
+            GameObject oldRoom = rooms[oldActiveRoom.x, oldActiveRoom.y].obj;
+            if (oldRoom != null) oldRoom.SetActive(false);
+            GameObject newRoom = rooms[activeRoom.x, activeRoom.y].obj;
+            if (newRoom != null) newRoom.SetActive(true);
+        }
         Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
-        gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.1f);
+        gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.05f);
     }
 
 }
