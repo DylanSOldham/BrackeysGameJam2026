@@ -37,8 +37,11 @@ public class RoomManager : MonoBehaviour
         }
 
         rooms[activeRoom.x, activeRoom.y].exists = true;
-        rooms[activeRoom.x + 1, activeRoom.y].exists = true;
-        rooms[activeRoom.x + 1, activeRoom.y + 1].exists = true;
+        Vector2Int randomWalker = activeRoom;
+        for (int i = 0; i < DUNGEON_SIZE; i++) {
+            rooms[randomWalker.x, randomWalker.y].exists = true;
+            randomWalker.y += 1;
+        }
 
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
