@@ -24,6 +24,10 @@ public class FrogAttackManager : MonoBehaviour
 
             Destroy(gameObject);
         }
+        else if (collision.CompareTag("Enemy"))
+        {
+
+        }
         else
         {
             Debug.Log("NOT HITTING THE PLAYER");
