@@ -40,6 +40,13 @@ public class RoomManager : MonoBehaviour
         Vector2Int randomWalker = activeRoom;
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             rooms[randomWalker.x, randomWalker.y].exists = true;
+            int numSteps = Random.Range(0, 8);
+            for (int j = 0; j < numSteps; j++)
+            {
+                int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
+                randomWalker.x = Mathf.Clamp(randomWalker.x + step, 0, DUNGEON_SIZE - 1);
+                rooms[randomWalker.x, randomWalker.y].exists = true;
+            }
             randomWalker.y += 1;
         }
 
