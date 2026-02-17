@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         animator.SetBool("moveLeft", rigidBody.linearVelocityX < 0f);
         animator.SetBool("moveUp", rigidBody.linearVelocityY > 0f);
         animator.SetBool("moveDown", rigidBody.linearVelocityY < 0f);
-        animator.SetBool("isIdle", (Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) < 0.01f);
+        animator.SetBool("notMoving", (Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) < 0.01f);
         //animator.Set("MoveY", input.y);
         //animator.SetFloat("Speed", input.sqrMagnitude);
     }
