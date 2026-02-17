@@ -369,6 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078322b898688ef44adc4b1cbd438219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  player: {fileID: 1384705657}
+  gameCamera: {fileID: 519420028}
   roomPrefab: {fileID: 3984411681335074231, guid: d3c88b94150f859458658e30c146d307, type: 3}
   doorTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
 --- !u!4 &204545476
