@@ -40,12 +40,30 @@ public class RoomManager : MonoBehaviour
         Vector2Int randomWalker = activeRoom;
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             rooms[randomWalker.x, randomWalker.y].exists = true;
-            int numSteps = Random.Range(0, 8);
+            if (randomWalker.y != 0) 
+            {
+                rooms[randomWalker.x, randomWalker.y - 1].doorUp = true;
+                rooms[randomWalker.x, randomWalker.y].doorDown = true;
+            }
+            int numSteps = Random.Range(0, 60);
             for (int j = 0; j < numSteps; j++)
             {
                 int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
-                randomWalker.x = Mathf.Clamp(randomWalker.x + step, 0, DUNGEON_SIZE - 1);
-                rooms[randomWalker.x, randomWalker.y].exists = true;
+                if (randomWalker.x + step >= 0 && randomWalker.x + step < DUNGEON_SIZE)
+                {
+                    randomWalker.x += step;
+                    rooms[randomWalker.x, randomWalker.y].exists = true;
+                    if (step == -1)
+                    {
+                        rooms[randomWalker.x, randomWalker.y].doorRight = true;
+                        rooms[randomWalker.x + 1, randomWalker.y].doorLeft = true;
+                    }
+                    if (step == 1)
+                    {
+                        rooms[randomWalker.x, randomWalker.y].doorLeft = true;
+                        rooms[randomWalker.x - 1, randomWalker.y].doorRight = true;
+                    }
+                }
             }
             randomWalker.y += 1;
         }
@@ -62,22 +80,22 @@ public class RoomManager : MonoBehaviour
 
                     Tilemap tilemap = roomObject.GetComponentInChildren<Tilemap>();
 
-                    if (i + 1 < DUNGEON_SIZE && rooms[i + 1, j].exists)
+                    if (room.doorRight)
                     {
                         tilemap.SetTile(new Vector3Int(6, 0, 0), null);
                         tilemap.SetTile(new Vector3Int(6, -1, 0), null);
                     }
-                    if (i - 1 >= 0 && rooms[i - 1, j].exists)
+                    if (room.doorLeft)
                     {
                         tilemap.SetTile(new Vector3Int(-7, 0, 0), null);
                         tilemap.SetTile(new Vector3Int(-7, -1, 0), null);
                     }
-                    if (j + 1 < DUNGEON_SIZE && rooms[i, j + 1].exists)
+                    if (room.doorUp)
                     {
                         tilemap.SetTile(new Vector3Int(0, 4, 0), null);
                         tilemap.SetTile(new Vector3Int(-1, 4, 0), null);
                     }
-                    if (j - 1 >= 0 && rooms[i, j - 1].exists)
+                    if (room.doorDown)
                     {
                         tilemap.SetTile(new Vector3Int(0, -5, 0), null);
                         tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
