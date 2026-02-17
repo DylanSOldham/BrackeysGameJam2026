@@ -372,6 +372,7 @@ MonoBehaviour:
   player: {fileID: 1384705657}
   gameCamera: {fileID: 519420028}
   roomPrefab: {fileID: 3984411681335074231, guid: d3c88b94150f859458658e30c146d307, type: 3}
+  minimap: {fileID: 438675091}
   doorTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
 --- !u!4 &204545476
 Transform:
@@ -864,6 +865,55 @@ MonoBehaviour:
   masterSlider: {fileID: 2090311805}
   musicSlider: {fileID: 911593072}
   effectsSlider: {fileID: 1437892543}
+--- !u!1 &438675090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438675092}
+  - component: {fileID: 438675091}
+  m_Layer: 5
+  m_Name: Minimap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &438675091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438675090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53df746cb20b12d4e939bf2096c09f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  minimapElementPrefab: {fileID: 4276062011904680220, guid: 54f6d9f430b63ff4e9712c14dc5b5356, type: 3}
+--- !u!224 &438675092
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438675090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1581786004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -80, y: -72}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &441350269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2230,8 @@ MonoBehaviour:
   maxHealth: 10
   moveSpeed: 3
   damage: 1
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   attackDistance: 2
   attackCooldown: 2
   timeSinceLastAttack: 2
@@ -4161,6 +4213,7 @@ RectTransform:
   - {fileID: 320219186}
   - {fileID: 887738398}
   - {fileID: 387246462}
+  - {fileID: 438675092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

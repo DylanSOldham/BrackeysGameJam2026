@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class RoomManager : MonoBehaviour
 {
-    const int DUNGEON_SIZE = 5;
+    public const int DUNGEON_SIZE = 5;
 
     const float ROOM_WIDTH = 14;
     const float ROOM_HEIGHT = 10;
@@ -12,9 +12,10 @@ public class RoomManager : MonoBehaviour
     public GameObject player;
     public GameObject gameCamera;
     public GameObject roomPrefab;
+    public Minimap minimap;
     public Tile doorTile;
 
-    private class Room
+    public class Room
     {
         public bool exists    = false;
         public bool doorLeft  = false;
@@ -45,7 +46,7 @@ public class RoomManager : MonoBehaviour
                 rooms[randomWalker.x, randomWalker.y - 1].doorUp = true;
                 rooms[randomWalker.x, randomWalker.y].doorDown = true;
             }
-            int numSteps = Random.Range(0, 60);
+            int numSteps = Random.Range(0, 6);
             for (int j = 0; j < numSteps; j++)
             {
                 int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
@@ -109,6 +110,7 @@ public class RoomManager : MonoBehaviour
 
         player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, player.transform.position.z);
         gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
+        minimap.RevealRoom(activeRoom);
     }
 
     void Update()
@@ -122,9 +124,10 @@ public class RoomManager : MonoBehaviour
             if (oldRoom != null) oldRoom.SetActive(false);
             GameObject newRoom = rooms[activeRoom.x, activeRoom.y].obj;
             if (newRoom != null) newRoom.SetActive(true);
+
+            minimap.RevealRoom(activeRoom);
         }
         Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.05f);
     }
-
 }
