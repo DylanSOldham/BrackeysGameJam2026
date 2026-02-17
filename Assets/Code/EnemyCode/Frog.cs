@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Frog : Enemy
 {
-    public float attackDistance = 2f;
+    public float attackDistance = 4f;
     public float attackCooldown = 2f;
     public float timeSinceLastAttack = 2f;
     public GameObject attackObject;
-    public float projectileSpeed = 10f;
+    public float projectileSpeed = 6f;
 
     protected override void HandleBehavior()
     {
@@ -18,6 +18,7 @@ public class Frog : Enemy
         if ((distance <= attackDistance) && (timeSinceLastAttack >= attackCooldown))
         {
             attack();
+            timeSinceLastAttack = 0f;
         }
         else
         {

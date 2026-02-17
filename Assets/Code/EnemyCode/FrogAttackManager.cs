@@ -27,6 +27,7 @@ public class FrogAttackManager : MonoBehaviour
         else
         {
             Debug.Log("NOT HITTING THE PLAYER");
+            Destroy(gameObject);
         }
     }
 }
