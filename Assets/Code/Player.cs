@@ -33,6 +33,21 @@ public class Player : MonoBehaviour
         animator.SetBool("notMoving", (Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) < 0.01f);
         //animator.Set("MoveY", input.y);
         //animator.SetFloat("Speed", input.sqrMagnitude);
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("moveLeft") || stateInfo.IsName("idleLeft") || animator.GetBool("moveLeft"))
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (stateInfo.IsName("notMoving"))
+        {
+
+        } 
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     void FixedUpdate()
@@ -49,8 +64,9 @@ public class Player : MonoBehaviour
         rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
 
 
-        spriteRenderer.flipX = animator.GetBool("moveLeft");
+        //spriteRenderer.flipX = animator.GetBool("moveLeft");
         
+
 
         //if(rigidBody.linearVelocity == Vector2.zero)
         //{
