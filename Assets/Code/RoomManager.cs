@@ -78,9 +78,7 @@ public class RoomManager : MonoBehaviour
                     roomObject.SetActive(false);
                     roomObject.transform.position = new Vector3(ROOM_WIDTH * i, ROOM_HEIGHT * j, 0.0f);
                     room.obj = roomObject;
-
                     Tilemap tilemap = roomObject.GetComponentInChildren<Tilemap>();
-
                     if (room.doorRight)
                     {
                         tilemap.SetTile(new Vector3Int(6, 0, 0), null);
@@ -108,9 +106,10 @@ public class RoomManager : MonoBehaviour
         Room active = rooms[activeRoom.x, activeRoom.y];
         active.obj.SetActive(true);
 
+        minimap.RoomEntered(activeRoom, active.doorUp, active.doorDown, active.doorLeft, active.doorRight);
+
         player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, player.transform.position.z);
         gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
-        minimap.RevealRoom(activeRoom, active.doorUp, active.doorDown, active.doorRight, active.doorLeft);
     }
 
     void Update()
@@ -121,11 +120,12 @@ public class RoomManager : MonoBehaviour
         if (oldActiveRoom != activeRoom)
         {
             Room oldRoom = rooms[oldActiveRoom.x, oldActiveRoom.y];
-            if (oldRoom != null) oldRoom.obj.SetActive(false);
+            if (oldRoom.obj != null) oldRoom.obj.SetActive(false);
             Room newRoom = rooms[activeRoom.x, activeRoom.y];
-            if (newRoom != null) newRoom.obj.SetActive(true);
-
-            minimap.RevealRoom(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
+            if (newRoom.obj != null) {
+                newRoom.obj.SetActive(true);
+                minimap.RoomEntered(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
+            }
         }
         Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.05f);
