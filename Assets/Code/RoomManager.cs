@@ -105,12 +105,12 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        Debug.Log(activeRoom);
-        rooms[activeRoom.x, activeRoom.y].obj.SetActive(true);
+        Room active = rooms[activeRoom.x, activeRoom.y];
+        active.obj.SetActive(true);
 
         player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, player.transform.position.z);
         gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
-        minimap.RevealRoom(activeRoom);
+        minimap.RevealRoom(activeRoom, active.doorUp, active.doorDown, active.doorRight, active.doorLeft);
     }
 
     void Update()
@@ -120,12 +120,12 @@ public class RoomManager : MonoBehaviour
         activeRoom.y = (int)(player.transform.position.y / ROOM_HEIGHT + 0.5);
         if (oldActiveRoom != activeRoom)
         {
-            GameObject oldRoom = rooms[oldActiveRoom.x, oldActiveRoom.y].obj;
-            if (oldRoom != null) oldRoom.SetActive(false);
-            GameObject newRoom = rooms[activeRoom.x, activeRoom.y].obj;
-            if (newRoom != null) newRoom.SetActive(true);
+            Room oldRoom = rooms[oldActiveRoom.x, oldActiveRoom.y];
+            if (oldRoom != null) oldRoom.obj.SetActive(false);
+            Room newRoom = rooms[activeRoom.x, activeRoom.y];
+            if (newRoom != null) newRoom.obj.SetActive(true);
 
-            minimap.RevealRoom(activeRoom);
+            minimap.RevealRoom(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
         }
         Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
         gameCamera.transform.position = Vector3.Lerp(gameCamera.transform.position, cameraTarget, 0.05f);
