@@ -16,4 +16,12 @@ MonoBehaviour:
   gameMusic: {fileID: 8300000, guid: 6679afa391dd4264cbf0924ab3eba3ad, type: 3}
   buttonClick: {fileID: 8300000, guid: 176663487ee370c4bbd601f48be495c4, type: 3}
   buttonHighlight: {fileID: 8300000, guid: 02e06a9bc2b049c42a3481c890fecdda, type: 3}
-  upgradeSound: {fileID: 0}
+  closeMenu: {fileID: 8300000, guid: 0900162d6dfec5f4bab5872f844f3e6c, type: 3}
+  sliderMoving: {fileID: 8300000, guid: 41ed30029f48f8c4dbd482b9ad3068ec, type: 3}
+  playerMovement: {fileID: 0}
+  frogMovement: {fileID: 0}
+  playerShooting: {fileID: 0}
+  playerHit: {fileID: 0}
+  frogHit: {fileID: 0}
+  frogShooting: {fileID: 0}
+  roomChange: {fileID: 0}

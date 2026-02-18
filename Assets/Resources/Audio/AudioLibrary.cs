@@ -10,7 +10,16 @@ public class AudioLibrary : ScriptableObject
     [Header("SFX")]
     public AudioClip buttonClick;
     public AudioClip buttonHighlight;
-    public AudioClip upgradeSound;
+    public AudioClip closeMenu;
+    public AudioClip sliderMoving;
+    public AudioClip playerMovement;
+    public AudioClip frogMovement;
+    public AudioClip playerShooting;
+    public AudioClip playerHit;
+    public AudioClip frogHit;
+    public AudioClip frogShooting;
+    public AudioClip roomChange;
+
 
     // Enum for easy dropdown selection
     public enum Music
@@ -24,7 +33,15 @@ public class AudioLibrary : ScriptableObject
     {
         ButtonClick,
         ButtonHighlight,
-        Upgrade
+        closeMenu,
+        sliderMoving,
+        playerMovement,
+        frogMovement,
+        playerShooting,
+        playerHit,
+        frogHit,
+        frogShooting,
+        roomChange,
     }
 
     // Helper to get clip from enum
@@ -45,7 +62,15 @@ public class AudioLibrary : ScriptableObject
         {
             case SFX.ButtonClick: return buttonClick;
             case SFX.ButtonHighlight: return buttonHighlight;
-            case SFX.Upgrade: return upgradeSound;
+            case SFX.closeMenu: return closeMenu;
+            case SFX.sliderMoving: return sliderMoving;
+            case SFX.playerMovement: return playerMovement;
+            case SFX.frogMovement: return frogMovement;
+            case SFX.playerShooting: return playerShooting;
+            case SFX.playerHit: return playerHit;
+            case SFX.frogHit: return frogHit;
+            case SFX.frogShooting: return frogShooting;
+            case SFX.roomChange: return roomChange;
             default: return null;
         }
     }

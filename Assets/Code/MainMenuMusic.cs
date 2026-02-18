@@ -31,4 +31,13 @@ public class MainMenuMusic : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!a.musicSource.isPlaying)
+        {
+            Debug.Log("Song finished, playing again!");
+            PlaySound(song);
+        }
+    }
+
 }
