@@ -74,7 +74,7 @@ public class RoomManager : MonoBehaviour
                 Room room = rooms[i, j];
                 if (room.exists)
                 {
-                    GameObject roomObject = Instantiate(roomPrefab);
+                    GameObject roomObject = Instantiate(roomPrefab, transform);
                     roomObject.SetActive(false);
                     roomObject.transform.position = new Vector3(ROOM_WIDTH * i, ROOM_HEIGHT * j, 0.0f);
                     room.obj = roomObject;
