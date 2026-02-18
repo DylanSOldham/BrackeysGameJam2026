@@ -7,34 +7,38 @@ public class TransitionCode : MonoBehaviour
 {
     [Header("Text Settings")]
     public TextMeshProUGUI textBox;      // Your TMP text object
-    [TextArea] public string fullText;   // Full string to display
+    [TextArea(3, 10)] public string[] texts;   // Full string to display
     public float delay = 0.1f;          // Delay between each character
+
+    public int currentIndex = 0;
 
     private Coroutine typingCoroutine;
 
     private void OnEnable()
     {
-        StartTyping(fullText);
+        currentIndex = 0;
+        if (texts.Length > 0)
+            StartTyping(texts[currentIndex]);
     }
 
     // Start the effect
     public void StartTyping(string newText)
     {
         // Convert literal "\n" sequences into actual newline characters
-        fullText = newText.Replace("\\n", "\n");
+        newText = newText.Replace("\\n", "\n");
 
         // Stop previous typing if still running
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
-        typingCoroutine = StartCoroutine(TypeText());
+        typingCoroutine = StartCoroutine(TypeText(newText));
     }
 
-    private IEnumerator TypeText()
+    private IEnumerator TypeText(string text)
     {
         textBox.text = "";  // Clear text first
 
-        foreach (char c in fullText)
+        foreach (char c in text)
         {
             textBox.text += c;
             yield return new WaitForSeconds(delay);
@@ -44,7 +48,7 @@ public class TransitionCode : MonoBehaviour
     }
 
     // Optional: instantly finish typing
-    public void FinishTyping()
+    public void FinishTyping(string text)
     {
         if (typingCoroutine != null)
         {
@@ -52,13 +56,31 @@ public class TransitionCode : MonoBehaviour
             typingCoroutine = null;
         }
 
-        textBox.text = fullText;
+        textBox.text = text;
     }
-
 
     public void ClickToContinue()
     {
-        SceneManager.LoadScene("InGameScene");
+
+        // If typing is still running, finish instantly
+        if (typingCoroutine != null)
+        {
+            FinishTyping(texts[currentIndex]);
+            return;
+        }
+
+        // Move to the next text
+        currentIndex++;
+
+        if (currentIndex < texts.Length)
+        {
+            StartTyping(texts[currentIndex]);
+        }
+        else
+        {
+            // All texts shown, load next scene
+            SceneManager.LoadScene("InGameScene");
+        }
     }
 
 }

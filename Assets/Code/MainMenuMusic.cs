@@ -4,7 +4,9 @@ public class MainMenuMusic : MonoBehaviour
 {
 
     [Header("Music Effects")]
-    [SerializeField] private AudioLibrary.Music song;
+    [SerializeField] private AudioLibrary.Music mainMenu;
+    [SerializeField] private AudioLibrary.Music storySong;
+
 
     private AudioManager a;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,9 +16,15 @@ public class MainMenuMusic : MonoBehaviour
         startSong();
     }
 
+    public void updateSongToStory()
+    {
+        Debug.Log("UPDATING SOUND TO STORY");
+        PlaySound(storySong);
+    }
+
     public void startSong()
     {
-        PlaySound(song);
+        PlaySound(mainMenu);
     }
 
     private void PlaySound(AudioLibrary.Music song)
@@ -31,13 +39,6 @@ public class MainMenuMusic : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (!a.musicSource.isPlaying)
-        {
-            Debug.Log("Song finished, playing again!");
-            PlaySound(song);
-        }
-    }
+    
 
 }

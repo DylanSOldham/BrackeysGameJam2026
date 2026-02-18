@@ -351,6 +351,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2012376650}
+        m_TargetAssemblyTypeName: MainMenuMusic, Assembly-CSharp
+        m_MethodName: updateSongToStory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1707492112}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3793,7 +3805,7 @@ GameObject:
   - component: {fileID: 1264335246}
   - component: {fileID: 1264335245}
   m_Layer: 5
-  m_Name: Text1
+  m_Name: ShowText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3975,7 +3987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click to Continue
+  m_text: Click to proceed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
@@ -5633,9 +5645,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransitionCode
   textBox: {fileID: 1264335245}
-  fullText: Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah\nBlah Blah Blah
-    Blah Blah Blah Blah Blah Blah Blah Blah Blah
+  texts:
+  - Blah Blah Blah Blah Blah Blah Blah Blah Blah\nBlah Blah Blah Blah Blah Blah Blah
+    Blah Blah Blah
+  - abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd\n abcd abcd abcd abcd abcd
+    abcd abcd abcd
   delay: 0.1
+  currentIndex: 0
 --- !u!1 &1721039962
 GameObject:
   m_ObjectHideFlags: 0
@@ -6716,7 +6732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52953d9f851265c41ae081479f82dab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuMusic
-  song: 0
+  mainMenu: 0
+  storySong: 2
 --- !u!4 &2012376651
 Transform:
   m_ObjectHideFlags: 0
@@ -7069,7 +7086,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
