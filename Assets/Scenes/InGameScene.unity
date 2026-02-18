@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 345793066}
   - component: {fileID: 345793069}
   - component: {fileID: 345793068}
+  - component: {fileID: 345793070}
   - component: {fileID: 345793067}
   m_Layer: 5
   m_Name: CloseMenu
@@ -642,6 +643,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 345793070}
+        m_TargetAssemblyTypeName: PlaySFX, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &345793069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +685,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &345793070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345793065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2a23017cbd524e849e1d6a4707e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySFX
+  clickSFX: 2
 --- !u!1 &354424645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,6 +2677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887738398}
   - component: {fileID: 887738399}
+  - component: {fileID: 887738400}
   m_Layer: 5
   m_Name: AudioButton
   m_TagString: Untagged
@@ -2734,6 +2761,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 887738400}
+        m_TargetAssemblyTypeName: PlaySFX, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &887738400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887738397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2a23017cbd524e849e1d6a4707e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySFX
+  clickSFX: 0
 --- !u!1 &911593071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,6 +2796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911593073}
   - component: {fileID: 911593072}
+  - component: {fileID: 911593074}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -2814,6 +2867,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 911593074}
+        m_TargetAssemblyTypeName: PlaySFX, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &911593073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2836,6 +2901,19 @@ RectTransform:
   m_AnchoredPosition: {x: 292.5, y: -50}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &911593074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911593071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2a23017cbd524e849e1d6a4707e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySFX
+  clickSFX: 3
 --- !u!1 &993105839
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 8
   moveAcceleration: 50
+  PlayerMovement: 4
+  movementSoundCooldown: 0.25
 --- !u!50 &1384705662
 Rigidbody2D:
   serializedVersion: 5
@@ -3698,6 +3778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 0
   currentHealth: 0
+  PlayerHit: 7
 --- !u!1 &1437892541
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437892542}
   - component: {fileID: 1437892543}
+  - component: {fileID: 1437892544}
   m_Layer: 5
   m_Name: EffectsSlider
   m_TagString: Untagged
@@ -3800,6 +3882,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1437892544}
+        m_TargetAssemblyTypeName: PlaySFX, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1437892544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437892541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2a23017cbd524e849e1d6a4707e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySFX
+  clickSFX: 3
 --- !u!1 &1460813987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4897,6 +5004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2090311806}
   - component: {fileID: 2090311805}
+  - component: {fileID: 2090311807}
   m_Layer: 5
   m_Name: MasterSlider
   m_TagString: Untagged
@@ -4967,6 +5075,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2090311807}
+        m_TargetAssemblyTypeName: PlaySFX, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &2090311806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4989,6 +5109,19 @@ RectTransform:
   m_AnchoredPosition: {x: 292.5, y: -50}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2090311807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090311804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2a23017cbd524e849e1d6a4707e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySFX
+  clickSFX: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5001,3 +5134,4 @@ SceneRoots:
   - {fileID: 1036219374}
   - {fileID: 1581786004}
   - {fileID: 204545476}
+  - {fileID: 701196126}
