@@ -3677,6 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 8
   moveAcceleration: 50
+  bulletPrefab: {fileID: 6186984698230611074, guid: 16ecc7645c5d7264e97294447cb0a397, type: 3}
   PlayerMovement: 4
   movementSoundCooldown: 0.25
 --- !u!50 &1384705662
@@ -5134,4 +5135,3 @@ SceneRoots:
   - {fileID: 1036219374}
   - {fileID: 1581786004}
   - {fileID: 204545476}
-  - {fileID: 701196126}
