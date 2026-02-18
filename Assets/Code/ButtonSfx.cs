@@ -74,6 +74,7 @@ public class ButtonSfx : MonoBehaviour,
 
     public void OnDeselect(BaseEventData eventData)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
+
 }
