@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioLibrary.SFX PlayerHit;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
 
+        PlaySound(PlayerHit);
+
         StopAllCoroutines(); // prevents stacking flashes
         StartCoroutine(DamageFlash());
     }
@@ -41,5 +46,16 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer.color = Color.red;
     }
 
+    private void PlaySound(AudioLibrary.SFX sfx)
+    {
+        if (AudioManager.Instance == null) return;
+
+        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(sfx);
+
+        if (clip != null)
+        {
+            AudioManager.Instance.PlaySFX(clip);
+        }
+    }
 
 }

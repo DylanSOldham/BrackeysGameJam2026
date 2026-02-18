@@ -18,10 +18,10 @@ MonoBehaviour:
   buttonHighlight: {fileID: 8300000, guid: 02e06a9bc2b049c42a3481c890fecdda, type: 3}
   closeMenu: {fileID: 8300000, guid: 0900162d6dfec5f4bab5872f844f3e6c, type: 3}
   sliderMoving: {fileID: 8300000, guid: 41ed30029f48f8c4dbd482b9ad3068ec, type: 3}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 8300000, guid: 36a56379863abeb48a63b52beab9d423, type: 3}
   frogMovement: {fileID: 0}
-  playerShooting: {fileID: 0}
-  playerHit: {fileID: 0}
-  frogHit: {fileID: 0}
+  playerShooting: {fileID: 8300000, guid: 25d10bb06ff5aa744bd46eb6a3100569, type: 3}
+  playerHit: {fileID: 8300000, guid: 6797238f9ce6d8e409fc9927fccf5b77, type: 3}
+  frogHit: {fileID: 8300000, guid: 50da5b967f5379446a4c62ea9d600e1a, type: 3}
   frogShooting: {fileID: 0}
   roomChange: {fileID: 0}

@@ -14,12 +14,19 @@ public class Player : MonoBehaviour
 
     private Vector2 input;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioLibrary.SFX PlayerMovement;
+    [SerializeField] private float movementSoundCooldown = 0.4f;
+    private float lastMovementSound;
+
     void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        lastMovementSound = 0f;
+        movementSoundCooldown = 0.4f;
     }
 
     void Update()
@@ -31,8 +38,6 @@ public class Player : MonoBehaviour
         animator.SetBool("moveUp", rigidBody.linearVelocityY > 0f);
         animator.SetBool("moveDown", rigidBody.linearVelocityY < 0f);
         animator.SetBool("notMoving", (Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) < 0.01f);
-        //animator.Set("MoveY", input.y);
-        //animator.SetFloat("Speed", input.sqrMagnitude);
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+
     }
 
     void FixedUpdate()
@@ -63,20 +69,31 @@ public class Player : MonoBehaviour
         }
         rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
 
-
-        //spriteRenderer.flipX = animator.GetBool("moveLeft");
-        
-
-
-        //if(rigidBody.linearVelocity == Vector2.zero)
-        //{
-        //    animator.SetBool("isIdle", true);
-        //    animator.SetBool("isRight", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isIdle", false);
-        //    animator.SetBool("isRight", true);
-        //}
+        if((Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) > 0.01f)
+        {
+            TryPlayMovement();
+        }
     }
+
+    private void TryPlayMovement()
+    {
+        if (Time.unscaledTime - lastMovementSound < movementSoundCooldown)
+            return;
+
+        lastMovementSound = Time.unscaledTime;
+        PlaySound(PlayerMovement);
+    }
+
+    private void PlaySound(AudioLibrary.SFX sfx)
+    {
+        if (AudioManager.Instance == null) return;
+
+        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(sfx);
+
+        if (clip != null)
+        {
+            AudioManager.Instance.PlaySFX(clip);
+        }
+    }
+
 }
