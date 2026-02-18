@@ -10,6 +10,7 @@ public class RoomManager : MonoBehaviour
     const float ROOM_HEIGHT = 10;
 
     public GameObject player;
+    public GameObject frogPrefab;
     public GameObject gameCamera;
     public GameObject roomPrefab;
     public Minimap minimap;
@@ -23,6 +24,7 @@ public class RoomManager : MonoBehaviour
         public bool doorUp    = false;
         public bool doorDown  = false;
         public GameObject obj = null;
+        public List<GameObject> enemies = new List<GameObject>();
     }
 
     Room[,] rooms = new Room[DUNGEON_SIZE, DUNGEON_SIZE];
@@ -46,24 +48,22 @@ public class RoomManager : MonoBehaviour
                 rooms[randomWalker.x, randomWalker.y - 1].doorUp = true;
                 rooms[randomWalker.x, randomWalker.y].doorDown = true;
             }
-            int numSteps = Random.Range(0, 6);
+            int numSteps = 6;// Random.Range(0, 6);
             for (int j = 0; j < numSteps; j++)
             {
-                int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
-                if (randomWalker.x + step >= 0 && randomWalker.x + step < DUNGEON_SIZE)
+                int step = -1;// (int)(2.0f * ((float)j % 2 - 0.5f));// Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
+                rooms[randomWalker.x, randomWalker.y].exists = true;
+                if (step == -1 && randomWalker.x - 1 >= 0)
                 {
-                    randomWalker.x += step;
-                    rooms[randomWalker.x, randomWalker.y].exists = true;
-                    if (step == -1)
-                    {
-                        rooms[randomWalker.x, randomWalker.y].doorRight = true;
-                        rooms[randomWalker.x + 1, randomWalker.y].doorLeft = true;
-                    }
-                    if (step == 1)
-                    {
-                        rooms[randomWalker.x, randomWalker.y].doorLeft = true;
-                        rooms[randomWalker.x - 1, randomWalker.y].doorRight = true;
-                    }
+                    rooms[randomWalker.x, randomWalker.y].doorLeft = true;
+                    rooms[randomWalker.x - 1, randomWalker.y].doorRight = true;
+                    randomWalker.x -= 1;
+                }
+                if (step == 1 && randomWalker.x + 1 < DUNGEON_SIZE)
+                {
+                    rooms[randomWalker.x, randomWalker.y].doorRight = true;
+                    rooms[randomWalker.x + 1, randomWalker.y].doorLeft = true;
+                    randomWalker.x += 1;
                 }
             }
             randomWalker.y += 1;
@@ -72,6 +72,10 @@ public class RoomManager : MonoBehaviour
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
                 Room room = rooms[i, j];
+                if (i == activeRoom.x && j == activeRoom.y)
+                {
+                    Debug.Log(room.exists);
+                }
                 if (room.exists)
                 {
                     GameObject roomObject = Instantiate(roomPrefab, transform);
@@ -99,6 +103,19 @@ public class RoomManager : MonoBehaviour
                         tilemap.SetTile(new Vector3Int(0, -5, 0), null);
                         tilemap.SetTile(new Vector3Int(-1, -5, 0), null);
                     }
+
+                    int numEnemies = Mathf.CeilToInt(Random.Range(0, 4));
+                    for (int k = 0; k < numEnemies; k++)
+                    {
+                        GameObject enemy = Instantiate(frogPrefab, transform);
+                        enemy.SetActive(false);
+                        enemy.transform.position = new Vector3(
+                            i * ROOM_WIDTH + Random.Range(-1.0f, 1.0f), 
+                            j * ROOM_HEIGHT + Random.Range(-1.0f, 1.0f), 
+                            0.0f
+                            );
+                        room.enemies.Add(enemy);
+                    }
                 }
             }
         }
@@ -108,7 +125,7 @@ public class RoomManager : MonoBehaviour
 
         minimap.RoomEntered(activeRoom, active.doorUp, active.doorDown, active.doorLeft, active.doorRight);
 
-        player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, player.transform.position.z);
+        player.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, 0.0f);
         gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
     }
 
@@ -120,11 +137,21 @@ public class RoomManager : MonoBehaviour
         if (oldActiveRoom != activeRoom)
         {
             Room oldRoom = rooms[oldActiveRoom.x, oldActiveRoom.y];
-            if (oldRoom.obj != null) oldRoom.obj.SetActive(false);
+            oldRoom.obj.SetActive(false);
+            foreach (GameObject enemy in oldRoom.enemies) { 
+                enemy.SetActive(false);
+            }
             Room newRoom = rooms[activeRoom.x, activeRoom.y];
-            if (newRoom.obj != null) {
-                newRoom.obj.SetActive(true);
-                minimap.RoomEntered(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
+
+            if (!newRoom.exists)
+            {
+                Debug.LogError("Entered Invalid Room");
+            }
+
+            newRoom.obj.SetActive(true);
+            minimap.RoomEntered(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
+            foreach (GameObject enemy in newRoom.enemies) {
+                enemy.SetActive(true);
             }
         }
         Vector3 cameraTarget = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
