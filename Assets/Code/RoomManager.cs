@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviour
     const float ROOM_HEIGHT = 10;
 
     public GameObject player;
+    public GameObject snake;
     public GameObject frogPrefab;
     public GameObject gameCamera;
     public GameObject roomPrefab;
@@ -21,7 +22,7 @@ public class RoomManager : MonoBehaviour
     public class Room
     {
         public bool exists    = false;
-        public bool snakeRoom = false;
+        public bool isSnakeRoom = false;
         public DoorState doorLeft  = DoorState.NotPresent;
         public DoorState doorRight = DoorState.NotPresent;
         public DoorState doorUp    = DoorState.NotPresent;
@@ -49,8 +50,8 @@ public class RoomManager : MonoBehaviour
             }
         }
 
+        // Generate the dungeon layout - decide which rooms actually exist and how they connect
         int snakeLevelEntry = 3;
-
         rooms[activeRoom.x, activeRoom.y].exists = true;
         Vector2Int randomWalker = activeRoom;
         for (int i = 0; i < DUNGEON_SIZE; i++)
@@ -88,19 +89,21 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        // Decide the snake room as the furthest room from the entrance of that y-level
+        // Decide the snake room as the furthest room from the entrance of the final y-level
         int maxIndex = snakeLevelEntry;
         int maxDist = 0;
         for (int i = 0; i < DUNGEON_SIZE; ++i) {
             int dist = System.Math.Abs(i - snakeLevelEntry);
             if (rooms[i, DUNGEON_SIZE - 1].exists && dist > maxDist)
             {
-                maxDist = System.Math.Abs(i - snakeLevelEntry);
+                maxDist = dist;
                 maxIndex = i;
             }
         }
-        rooms[maxIndex, DUNGEON_SIZE - 1].snakeRoom = true;
+        rooms[maxIndex, DUNGEON_SIZE - 1].isSnakeRoom = true;
+        snake.transform.position = new Vector3(maxIndex * ROOM_WIDTH, (DUNGEON_SIZE - 1) * ROOM_HEIGHT, 0.0f);
 
+        // Instantiate the prefabs for each existent room
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
                 Room room = rooms[i, j];
@@ -113,7 +116,7 @@ public class RoomManager : MonoBehaviour
 
                     int numEnemies = Mathf.CeilToInt(Random.Range(0, 4));
 
-                    if (room.snakeRoom)
+                    if (room.isSnakeRoom)
                     {
                         numEnemies += 10;
                     }
