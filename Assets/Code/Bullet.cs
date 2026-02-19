@@ -24,12 +24,15 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-
-        if (collision.CompareTag("Enemy"))
+        else if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             enemy.TakeDamage(5);
             Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Heart"))
+        {
+
         }
         else 
         {

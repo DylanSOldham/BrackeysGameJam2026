@@ -11,13 +11,14 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Sound Effects")]
     [SerializeField] private AudioLibrary.SFX PlayerHit;
+    [SerializeField] private AudioLibrary.SFX PlayerRegainHP;
 
     public HeartUI heartUI;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        maxHealth = 9f;
+        maxHealth = 33f;
         currentHealth = 3f;
         heartUI.setHearts(this);
     }
@@ -29,6 +30,15 @@ public class PlayerHealth : MonoBehaviour
             //Destroy(gameObject);
             //Game Over set active
         }
+    }
+
+    public void gainHealth(float health)
+    {
+        currentHealth += health;
+
+        heartUI.setHearts(this);
+
+        PlaySound(PlayerRegainHP);
     }
 
     public void takeDamage(float damage)

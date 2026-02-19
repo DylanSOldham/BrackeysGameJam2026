@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FrogAttackManager : MonoBehaviour
 {
-    public float damage = 1f;
+    public float damage;
     public float lifetime = 0.75f;
 
     private void Start()
@@ -25,6 +25,10 @@ public class FrogAttackManager : MonoBehaviour
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Enemy"))
+        {
+
+        }
+        else if (collision.CompareTag("Heart"))
         {
 
         }
