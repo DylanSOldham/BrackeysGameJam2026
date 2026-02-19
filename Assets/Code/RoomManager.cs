@@ -49,10 +49,17 @@ public class RoomManager : MonoBehaviour
             }
         }
 
+        int snakeLevelEntry = 3;
+
         rooms[activeRoom.x, activeRoom.y].exists = true;
         Vector2Int randomWalker = activeRoom;
         for (int i = 0; i < DUNGEON_SIZE; i++)
         {
+            if (i == DUNGEON_SIZE - 1)
+            {
+                snakeLevelEntry = randomWalker.x;
+            }
+
             randomWalker.y = i;
             rooms[randomWalker.x, randomWalker.y].exists = true;
             if (randomWalker.y != 0) 
@@ -81,8 +88,8 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        // Decide the snake room
-        int maxIndex = DUNGEON_SIZE / 2;
+        // Decide the snake room as the furthest room from the entrance of that y-level
+        int maxIndex = snakeLevelEntry;
         int maxDist = 0;
         for (int i = 0; i < DUNGEON_SIZE; ++i) {
             if (rooms[i, DUNGEON_SIZE - 1].exists && System.Math.Abs(i - DUNGEON_SIZE / 2) > maxDist)
