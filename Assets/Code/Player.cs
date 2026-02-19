@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 50.0f;
     public float moveAcceleration = 15.0f;
+    public GameObject Gun;
     public GameObject bulletPrefab;
 
     private InputAction moveAction;
@@ -75,8 +76,8 @@ public class Player : MonoBehaviour
             facing = moveInput.y > 0.0 ? Direction.Up : Direction.Down;
         }
 
-        animator.SetBool("faceLeft", facing == Direction.Right);
-        animator.SetBool("faceRight",  facing == Direction.Left);
+        animator.SetBool("faceLeft", facing == Direction.Left);
+        animator.SetBool("faceRight",  facing == Direction.Right);
         animator.SetBool("faceUp",    facing == Direction.Up);
         animator.SetBool("faceDown",  facing == Direction.Down);
         animator.SetBool("moving", rigidBody.linearVelocity.magnitude > 0.01f);
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
                 Direction.Up => Vector2.up,
                 _ => Vector2.down,
             };
-            bullet.transform.position = transform.position;
+            bullet.transform.position = Gun.transform.position;
             bullet.GetComponent<Rigidbody2D>().AddForce(20.0f * forceDir, ForceMode2D.Impulse);
         }
 

@@ -31,10 +31,10 @@ public class GunAnimation : MonoBehaviour
 
     private void Update()
     {
-        bool moveLeft = playerAnimator.GetBool("moveLeft");
-        bool moveRight = playerAnimator.GetBool("moveRight");
-        bool moveUp = playerAnimator.GetBool("moveUp");
-        bool moveDown = playerAnimator.GetBool("moveDown");
+        bool moveLeft = playerAnimator.GetBool("faceLeft");
+        bool moveRight = playerAnimator.GetBool("faceRight");
+        bool moveUp = playerAnimator.GetBool("faceUp");
+        bool moveDown = playerAnimator.GetBool("faceDown");
 
         // Reset all first
         myAnimator.SetBool("moveLeft", false);
