@@ -101,7 +101,7 @@ public class RoomManager : MonoBehaviour
             }
         }
         rooms[maxIndex, DUNGEON_SIZE - 1].isSnakeRoom = true;
-        snake.transform.position = new Vector3(maxIndex * ROOM_WIDTH, (DUNGEON_SIZE - 1) * ROOM_HEIGHT, 0.0f);
+        snake.transform.position = new Vector3(maxIndex * ROOM_WIDTH, (DUNGEON_SIZE - 1) * ROOM_HEIGHT + 2.5f, 0.0f);
 
         // Instantiate the prefabs for each existent room
         for (int i = 0; i < DUNGEON_SIZE; i++) {
