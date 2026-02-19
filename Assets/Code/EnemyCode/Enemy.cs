@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Base Stats")]
     public float maxHealth = 10f;
     public float moveSpeed = 3f;
-    public float damage = 1f;
+    public float damage = 0.5f;
 
     [Header("Enemy Hit SFX")]
     [SerializeField] private AudioLibrary.SFX EnemyHit;
@@ -16,6 +16,7 @@ public abstract class Enemy : MonoBehaviour
     protected Transform player;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public GameObject regainHeart;
 
     protected virtual void Awake()
     {
@@ -41,7 +42,20 @@ public abstract class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            SpawnHeart();
             Die();
+        }
+    }
+
+    private void SpawnHeart()
+    {
+        if(regainHeart != null)
+        {
+            GameObject projectile = Instantiate(
+            regainHeart,
+            transform.position,
+            transform.rotation
+        );
         }
     }
 

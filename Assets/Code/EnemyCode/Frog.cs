@@ -3,11 +3,22 @@ using UnityEngine;
 
 public class Frog : Enemy
 {
-    public float attackDistance = 4f;
-    public float attackCooldown = 2f;
-    public float timeSinceLastAttack = 2f;
+    public float attackDistance;
+    public float attackCooldown;
+    public float timeSinceLastAttack;
     public GameObject attackObject;
-    public float projectileSpeed = 6f;
+    public float projectileSpeed;
+    public float damageNum;
+
+
+    private void Start()
+    {
+        damage = 0.5f;
+        attackDistance = 3f;
+        projectileSpeed = 5f;
+        attackCooldown = 2f;
+        timeSinceLastAttack = 2f;
+    }
 
     protected override void HandleBehavior()
     {
@@ -66,7 +77,10 @@ public class Frog : Enemy
             rotation
         );
 
+        FrogAttackManager a = projectile.GetComponent<FrogAttackManager>();
+        a.damage = damage;
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
         rb.linearVelocity = direction * projectileSpeed;
     }
 }

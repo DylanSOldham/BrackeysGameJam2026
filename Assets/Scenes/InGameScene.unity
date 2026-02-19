@@ -6526,6 +6526,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   PlayerHit: 7
+  PlayerRegainHP: 0
   heartUI: {fileID: 152091563}
 --- !u!1 &1437892541
 GameObject:
