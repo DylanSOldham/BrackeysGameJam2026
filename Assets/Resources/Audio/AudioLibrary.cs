@@ -6,6 +6,7 @@ public class AudioLibrary : ScriptableObject
     [Header("Music")]
     public AudioClip mainMenuMusic;
     public AudioClip gameMusic;
+    public AudioClip storyMusic;
 
     [Header("SFX")]
     public AudioClip buttonClick;
@@ -25,7 +26,8 @@ public class AudioLibrary : ScriptableObject
     public enum Music
     {
         MainMenu,
-        GameMusic
+        GameMusic,
+        StoryMusic
     }
 
     // Enum for easy dropdown selection
@@ -51,6 +53,7 @@ public class AudioLibrary : ScriptableObject
         {
             case Music.MainMenu: return mainMenuMusic;
             case Music.GameMusic: return gameMusic;
+            case Music.StoryMusic: return storyMusic;
             default: return null;
         }
     }
