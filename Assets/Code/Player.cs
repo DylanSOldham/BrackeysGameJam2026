@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     public float moveAcceleration = 15.0f;
     public GameObject Gun;
     public GameObject bulletPrefab;
+    public float bulletCooldown = 0.333f;
+    public float timeSinceLastAttack = 0.333f;
 
     private InputAction moveAction;
     private Rigidbody2D rigidBody;
@@ -83,20 +86,31 @@ public class Player : MonoBehaviour
         animator.SetBool("moving", rigidBody.linearVelocity.magnitude > 0.01f);
         spriteRenderer.flipX = facing == Direction.Left;
 
-        if (shootAction.WasPerformedThisFrame()) {
-            GameObject bullet = Instantiate(bulletPrefab);
-            Vector2 forceDir = facing switch
-            {
-                Direction.Left => Vector2.left,
-                Direction.Right => Vector2.right,
-                Direction.Up => Vector2.up,
-                _ => Vector2.down,
-            };
-            bullet.transform.position = Gun.transform.position;
-            bullet.GetComponent<Rigidbody2D>().AddForce(20.0f * forceDir, ForceMode2D.Impulse);
+        if (shootAction.WasPerformedThisFrame() && (timeSinceLastAttack >= bulletCooldown)) 
+        {
+            shoot();
+            timeSinceLastAttack = 0f;
+        }
+        else
+        {
+            timeSinceLastAttack += Time.deltaTime;
         }
 
         prevMoveInput = moveInput;
+    }
+
+    public void shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab);
+        Vector2 forceDir = facing switch
+        {
+            Direction.Left => Vector2.left,
+            Direction.Right => Vector2.right,
+            Direction.Up => Vector2.up,
+            _ => Vector2.down,
+        };
+        bullet.transform.position = Gun.transform.position;
+        bullet.GetComponent<Rigidbody2D>().AddForce(20.0f * forceDir, ForceMode2D.Impulse);
     }
 
     void FixedUpdate()

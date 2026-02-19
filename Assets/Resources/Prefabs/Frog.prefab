@@ -195,6 +195,7 @@ MonoBehaviour:
   maxHealth: 10
   moveSpeed: 3
   damage: 1
+  EnemyHit: 8
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   attackDistance: 2

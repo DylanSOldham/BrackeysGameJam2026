@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using static AudioLibrary;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -6,6 +8,9 @@ public abstract class Enemy : MonoBehaviour
     public float maxHealth = 10f;
     public float moveSpeed = 3f;
     public float damage = 1f;
+
+    [Header("Enemy Hit SFX")]
+    [SerializeField] private AudioLibrary.SFX EnemyHit;
 
     protected float currentHealth;
     protected Transform player;
@@ -31,10 +36,28 @@ public abstract class Enemy : MonoBehaviour
     {
         currentHealth -= amount;
 
+        StopAllCoroutines(); // prevents stacking flashes
+        StartCoroutine(DamageFlash());
+
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(EnemyHit);
+
+        if (clip != null)
+        {
+            AudioManager.Instance.PlaySFX(clip);
+        }
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(0.5f);
+
+        spriteRenderer.color = Color.white;
     }
 
     protected virtual void Die()
