@@ -92,9 +92,10 @@ public class RoomManager : MonoBehaviour
         int maxIndex = snakeLevelEntry;
         int maxDist = 0;
         for (int i = 0; i < DUNGEON_SIZE; ++i) {
-            if (rooms[i, DUNGEON_SIZE - 1].exists && System.Math.Abs(i - DUNGEON_SIZE / 2) > maxDist)
+            int dist = System.Math.Abs(i - snakeLevelEntry);
+            if (rooms[i, DUNGEON_SIZE - 1].exists && dist > maxDist)
             {
-                maxDist = System.Math.Abs(i - DUNGEON_SIZE / 2);
+                maxDist = System.Math.Abs(i - snakeLevelEntry);
                 maxIndex = i;
             }
         }
