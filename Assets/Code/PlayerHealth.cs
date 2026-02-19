@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth <= 0f)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -39,11 +39,11 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator DamageFlash()
     {
-        spriteRenderer.color = Color.green;
-
-        yield return new WaitForSeconds(1f);
-
         spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = Color.pink;
     }
 
     private void PlaySound(AudioLibrary.SFX sfx)

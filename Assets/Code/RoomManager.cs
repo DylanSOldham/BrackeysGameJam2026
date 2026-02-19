@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -41,7 +42,9 @@ public class RoomManager : MonoBehaviour
 
         rooms[activeRoom.x, activeRoom.y].exists = true;
         Vector2Int randomWalker = activeRoom;
-        for (int i = 0; i < DUNGEON_SIZE; i++) {
+        for (int i = 0; i < DUNGEON_SIZE; i++)
+        {
+            randomWalker.y = i;
             rooms[randomWalker.x, randomWalker.y].exists = true;
             if (randomWalker.y != 0) 
             {
@@ -51,8 +54,8 @@ public class RoomManager : MonoBehaviour
             int numSteps = Random.Range(0, 6);
             for (int j = 0; j < numSteps; j++)
             {
+
                 int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
-                rooms[randomWalker.x, randomWalker.y].exists = true;
                 if (step == -1 && randomWalker.x - 1 >= 0)
                 {
                     rooms[randomWalker.x, randomWalker.y].doorLeft = true;
@@ -65,17 +68,13 @@ public class RoomManager : MonoBehaviour
                     rooms[randomWalker.x + 1, randomWalker.y].doorLeft = true;
                     randomWalker.x += 1;
                 }
+                rooms[randomWalker.x, randomWalker.y].exists = true;
             }
-            randomWalker.y += 1;
         }
 
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
                 Room room = rooms[i, j];
-                if (i == activeRoom.x && j == activeRoom.y)
-                {
-                    Debug.Log(room.exists);
-                }
                 if (room.exists)
                 {
                     GameObject roomObject = Instantiate(roomPrefab, transform);
@@ -129,6 +128,21 @@ public class RoomManager : MonoBehaviour
         gameCamera.transform.position = new Vector3(activeRoom.x * ROOM_WIDTH, activeRoom.y * ROOM_HEIGHT, gameCamera.transform.position.z);
     }
 
+    void printTheWholeMap()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < DUNGEON_SIZE; i++)
+        {
+            for (int j = 0; j < DUNGEON_SIZE; j++)
+            {
+                sb.Append(rooms[j, i].exists);
+                sb.Append(", ");
+            }
+            sb.AppendLine();
+        }
+        Debug.Log(sb.ToString());
+    }
+
     void Update()
     {
         for (int i = 0; i < rooms[activeRoom.x, activeRoom.y].enemies.Count; ++i)
@@ -150,10 +164,9 @@ public class RoomManager : MonoBehaviour
                 enemy.SetActive(false);
             }
             Room newRoom = rooms[activeRoom.x, activeRoom.y];
-
             if (!newRoom.exists)
             {
-                Debug.LogError("Entered Invalid Room");
+                Debug.Log($"STEPPED INTO INVALID ROOM {activeRoom.x} {activeRoom.y}");
             }
 
             newRoom.obj.SetActive(true);
