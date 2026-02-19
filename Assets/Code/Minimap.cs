@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static RoomManager;
 
 public class Minimap : MonoBehaviour
 {
@@ -16,28 +17,28 @@ public class Minimap : MonoBehaviour
         
     }
 
-    public void RoomEntered(Vector2Int position, bool doorUp, bool doorDown, bool doorLeft, bool doorRight)
+    public void RoomEntered(Vector2Int position, DoorState doorUp, DoorState doorDown, DoorState doorLeft, DoorState doorRight)
     {
-        float posX = 90.0f * ((float)position.x / RoomManager.DUNGEON_SIZE - 0.5f) + 9.0f;
-        float posY = 90.0f * ((float)position.y / RoomManager.DUNGEON_SIZE - 0.5f) + 9.0f;
+        float posX = 90.0f * ((float)position.x / DUNGEON_SIZE - 0.5f) + 9.0f;
+        float posY = 90.0f * ((float)position.y / DUNGEON_SIZE - 0.5f) + 9.0f;
         if (roomElements[position.x, position.y] == null)
         {
             GameObject element = Instantiate(minimapElementPrefab, transform);
             element.transform.localPosition = new Vector3(posX, posY, element.transform.position.z);
             element.transform.SetSiblingIndex(1);
-            if (doorUp)
+            if (doorUp != DoorState.NotPresent)
             {
                 element.transform.Find("DoorUp").gameObject.SetActive(true);
             }
-            if (doorDown)
+            if (doorDown != DoorState.NotPresent)
             {
                 element.transform.Find("DoorDown").gameObject.SetActive(true);
             }
-            if (doorLeft)
+            if (doorLeft != DoorState.NotPresent)
             {
                 element.transform.Find("DoorLeft").gameObject.SetActive(true);
             }
-            if (doorRight)
+            if (doorRight != DoorState.NotPresent)
             {
                 element.transform.Find("DoorRight").gameObject.SetActive(true);
             }

@@ -374,7 +374,7 @@ MonoBehaviour:
   gameCamera: {fileID: 519420028}
   roomPrefab: {fileID: 3984411681335074231, guid: d3c88b94150f859458658e30c146d307, type: 3}
   minimap: {fileID: 438675091}
-  wallTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
+  doorTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
 --- !u!4 &204545476
 Transform:
   m_ObjectHideFlags: 0
@@ -757,8 +757,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Master
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2469,8 +2469,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Music
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3019,8 +3019,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3683,8 +3683,8 @@ MonoBehaviour:
   bulletCooldown: 0.333
   timeSinceLastAttack: 0.333
   PlayerMovement: 4
-  movementSoundCooldown: 0.4
-  shootSFX: 6
+  movementSoundCooldown: 0.25
+  shootSFX: 0
 --- !u!50 &1384705662
 Rigidbody2D:
   serializedVersion: 5
@@ -4287,8 +4287,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4820,8 +4820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4976,8 +4976,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Effects
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
-  m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
+  m_sharedMaterial: {fileID: 572517864695939568, guid: 5e482c228ad63304a9789fe45f1964c6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
