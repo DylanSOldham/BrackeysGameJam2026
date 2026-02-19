@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    public GameObject gameOver;
 
     private SpriteRenderer spriteRenderer;
 
@@ -29,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         {
             //Destroy(gameObject);
             //Game Over set active
+            gameOver.SetActive(true);
         }
     }
 
