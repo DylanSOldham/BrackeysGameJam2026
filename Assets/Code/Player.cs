@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField] private AudioLibrary.SFX PlayerMovement;
     [SerializeField] private float movementSoundCooldown = 0.4f;
+    [SerializeField] private AudioLibrary.SFX shootSFX;
     private float lastMovementSound;
 
     private enum Direction { Left, Right, Up, Down }
@@ -101,6 +102,12 @@ public class Player : MonoBehaviour
 
     public void shoot()
     {
+        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(shootSFX);
+
+        if (clip != null)
+        {
+            AudioManager.Instance.PlaySFX(clip);
+        }
         GameObject bullet = Instantiate(bulletPrefab);
         Vector2 forceDir = facing switch
         {

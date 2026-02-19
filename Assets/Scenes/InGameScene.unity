@@ -3684,6 +3684,7 @@ MonoBehaviour:
   timeSinceLastAttack: 0.333
   PlayerMovement: 4
   movementSoundCooldown: 0.4
+  shootSFX: 6
 --- !u!50 &1384705662
 Rigidbody2D:
   serializedVersion: 5
