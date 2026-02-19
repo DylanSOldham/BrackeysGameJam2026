@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
     public class Room
     {
         public bool exists    = false;
+        public bool snakeRoom = false;
         public DoorState doorLeft  = DoorState.NotPresent;
         public DoorState doorRight = DoorState.NotPresent;
         public DoorState doorUp    = DoorState.NotPresent;
@@ -80,6 +81,18 @@ public class RoomManager : MonoBehaviour
             }
         }
 
+        // Decide the snake room
+        int maxIndex = DUNGEON_SIZE / 2;
+        int maxDist = 0;
+        for (int i = 0; i < DUNGEON_SIZE; ++i) {
+            if (rooms[i, DUNGEON_SIZE - 1].exists && System.Math.Abs(i - DUNGEON_SIZE / 2) > maxDist)
+            {
+                maxDist = System.Math.Abs(i - DUNGEON_SIZE / 2);
+                maxIndex = i;
+            }
+        }
+        rooms[maxIndex, DUNGEON_SIZE - 1].snakeRoom = true;
+
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
                 Room room = rooms[i, j];
@@ -91,6 +104,12 @@ public class RoomManager : MonoBehaviour
                     room.obj = roomObject;
 
                     int numEnemies = Mathf.CeilToInt(Random.Range(0, 4));
+
+                    if (room.snakeRoom)
+                    {
+                        numEnemies += 10;
+                    }
+
                     for (int k = 0; k < numEnemies; k++)
                     {
                         GameObject enemy = Instantiate(frogPrefab, transform);
