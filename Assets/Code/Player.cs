@@ -102,12 +102,7 @@ public class Player : MonoBehaviour
 
     public void shoot()
     {
-        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(shootSFX);
-
-        if (clip != null)
-        {
-            AudioManager.Instance.PlaySFX(clip);
-        }
+        
         GameObject bullet = Instantiate(bulletPrefab);
         Vector2 forceDir = facing switch
         {
@@ -118,6 +113,16 @@ public class Player : MonoBehaviour
         };
         bullet.transform.position = Gun.transform.position;
         bullet.GetComponent<Rigidbody2D>().AddForce(20.0f * forceDir, ForceMode2D.Impulse);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(shootSFX);
+
+            if (clip != null)
+            {
+                AudioManager.Instance.PlaySFX(clip);
+            }
+        }
     }
 
     void FixedUpdate()

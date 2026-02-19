@@ -47,12 +47,16 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator DamageFlash()
     {
-        AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(EnemyHit);
-
-        if (clip != null)
+        if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySFX(clip);
+            AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(EnemyHit);
+
+            if (clip != null)
+            {
+                AudioManager.Instance.PlaySFX(clip);
+            }
         }
+
         spriteRenderer.color = Color.red;
 
         yield return new WaitForSeconds(0.5f);
