@@ -48,10 +48,10 @@ public class RoomManager : MonoBehaviour
                 rooms[randomWalker.x, randomWalker.y - 1].doorUp = true;
                 rooms[randomWalker.x, randomWalker.y].doorDown = true;
             }
-            int numSteps = 6;// Random.Range(0, 6);
+            int numSteps = Random.Range(0, 6);
             for (int j = 0; j < numSteps; j++)
             {
-                int step = -1;// (int)(2.0f * ((float)j % 2 - 0.5f));// Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
+                int step = Random.Range(0.0f, 1.0f) < 0.5 ? -1 : 1;
                 rooms[randomWalker.x, randomWalker.y].exists = true;
                 if (step == -1 && randomWalker.x - 1 >= 0)
                 {
@@ -131,6 +131,14 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        for (int i = 0; i < rooms[activeRoom.x, activeRoom.y].enemies.Count; ++i)
+        {
+            if (rooms[activeRoom.x, activeRoom.y].enemies[i] == null)
+            {
+                rooms[activeRoom.x, activeRoom.y].enemies.Remove(rooms[activeRoom.x, activeRoom.y].enemies[i]);
+            }
+        }
+
         Vector2Int oldActiveRoom = activeRoom;
         activeRoom.x = Mathf.FloorToInt(player.transform.position.x / ROOM_WIDTH + 0.5f);
         activeRoom.y = (int)(player.transform.position.y / ROOM_HEIGHT + 0.5);

@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
                 _ => Vector2.down,
             };
             bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody2D>().AddForce(50.0f * forceDir, ForceMode2D.Impulse);
+            bullet.GetComponent<Rigidbody2D>().AddForce(20.0f * forceDir, ForceMode2D.Impulse);
         }
 
         prevMoveInput = moveInput;
