@@ -17,6 +17,7 @@ public class RoomManager : MonoBehaviour
     public Minimap minimap;
     public Tile doorTile;
 
+    
     public class Room
     {
         public bool exists    = false;
@@ -27,7 +28,7 @@ public class RoomManager : MonoBehaviour
         public GameObject obj = null;
         public List<GameObject> enemies = new List<GameObject>();
     }
-
+    
     Room[,] rooms = new Room[DUNGEON_SIZE, DUNGEON_SIZE];
     Vector2Int activeRoom = new Vector2Int(DUNGEON_SIZE / 2, 0);
 
