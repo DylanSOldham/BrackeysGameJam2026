@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        maxHealth = 9f;
+        maxHealth = 33f;
         currentHealth = 3f;
         heartUI.setHearts(this);
     }
