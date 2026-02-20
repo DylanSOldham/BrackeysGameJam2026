@@ -102,7 +102,7 @@ public class RoomManager : MonoBehaviour
         }
         rooms[maxIndex, DUNGEON_SIZE - 1].isSnakeRoom = true;
         snake.transform.position = new Vector3(maxIndex * ROOM_WIDTH, (DUNGEON_SIZE - 1) * ROOM_HEIGHT, 0.0f);
-        /**/activeRoom = new Vector2Int(maxIndex, (DUNGEON_SIZE - 1));
+        activeRoom = new Vector2Int(maxIndex, (DUNGEON_SIZE - 1));
 
         // Instantiate the prefabs for each existent room
         for (int i = 0; i < DUNGEON_SIZE; i++) {
@@ -116,12 +116,6 @@ public class RoomManager : MonoBehaviour
                     room.obj = roomObject;
 
                     int numEnemies = Mathf.CeilToInt(Random.Range(0, 4));
-
-                    if (room.isSnakeRoom)
-                    {
-                        numEnemies += 10;
-                    }
-
                     for (int k = 0; k < numEnemies; k++)
                     {
                         GameObject enemy = Instantiate(frogPrefab, transform);
