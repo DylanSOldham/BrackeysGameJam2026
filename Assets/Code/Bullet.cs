@@ -30,6 +30,11 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(5);
             Destroy(gameObject);
         }
+        else if (collision.CompareTag("SnakeBoss"))
+        {
+            collision.gameObject.SendMessage("TakeDamage", 5);
+            Destroy(gameObject);
+        }
         else if (collision.CompareTag("Heart"))
         {
 

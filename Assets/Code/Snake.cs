@@ -14,6 +14,9 @@ public class Snake : MonoBehaviour
     private Dictionary<int, Vector3> positions = new();
 
     private float headMoveTimer = 3.0f;
+    private float tailAttackTimer = 2.0f;
+
+    private float health = 20.0f;
 
     enum BossPosition
     {
@@ -43,13 +46,6 @@ public class Snake : MonoBehaviour
         head.transform.localPosition = positions[(int)headPos];
         tail.transform.localPosition = positions[(int)tailPos];
 
-        headMoveTimer -= Time.deltaTime;
-        if (headMoveTimer < 0)
-        {
-            headPos = (BossPosition) Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
-            headMoveTimer = 3.0f;
-        }
-
         switch (state)
         {
             case BossState.Intro:
@@ -64,6 +60,47 @@ public class Snake : MonoBehaviour
 
     void BasicPattern()
     {
+        headMoveTimer -= Time.deltaTime;
+        if (headMoveTimer < 0)
+        {
+            if (headPos == BossPosition.Away)
+            {
+                do
+                {
+                    headPos = (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                } while (headPos == tailPos);
+            }
+            else
+            {
+                headPos = BossPosition.Away;
+            }
+            headMoveTimer = 3.0f;
+        }
 
+        tailAttackTimer -= Time.deltaTime;
+        if (tailAttackTimer < 0)
+        {
+            if (tailPos == BossPosition.Away)
+            {
+                do
+                {
+                    tailPos = (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                } while (tailPos == headPos);
+            } else
+            {
+                tailPos = BossPosition.Away;
+            }
+            tailAttackTimer = 2.0f;
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        Debug.Log(health);
+        if (health <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
