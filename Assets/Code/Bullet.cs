@@ -39,6 +39,10 @@ public class Bullet : MonoBehaviour
         {
 
         }
+        else if (collision.CompareTag("Water"))
+        {
+
+        }
         else 
         {
             Destroy(gameObject);

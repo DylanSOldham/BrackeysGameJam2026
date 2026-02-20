@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     public GameObject snake;
     public GameObject frogPrefab;
     public GameObject gameCamera;
-    public GameObject[] Rooms;
+    public GameObject[] RoomsList;
     public Minimap minimap;
     public Tile wallTile;
 
@@ -110,8 +110,18 @@ public class RoomManager : MonoBehaviour
                 Room room = rooms[i, j];
                 if (room.exists)
                 {
-                    int randomIndex = Random.Range(0, Rooms.Length);
-                    GameObject roomObject = Instantiate(Rooms[randomIndex], transform);
+                    GameObject roomObject;
+
+                    if (!room.isSnakeRoom)
+                    {
+                        int randomIndex = Random.Range(0, RoomsList.Length - 1);
+                        roomObject = Instantiate(RoomsList[randomIndex], transform);
+                    }
+                    else
+                    {
+                        roomObject = Instantiate(RoomsList[RoomsList.Length-1], transform);
+                    }
+
                     roomObject.SetActive(false);
                     roomObject.transform.position = new Vector3(ROOM_WIDTH * i, ROOM_HEIGHT * j, 0.0f);
                     room.obj = roomObject;
