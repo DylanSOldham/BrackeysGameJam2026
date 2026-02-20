@@ -245,16 +245,28 @@ public class RoomManager : MonoBehaviour
         Tile leftTile = room.doorLeft == DoorState.Open ? null : wallTile;
         Tile rightTile = room.doorRight == DoorState.Open ? null : wallTile;
 
-        tilemap.SetTile(new Vector3Int(6, 0, 0), rightTile);
-        tilemap.SetTile(new Vector3Int(6, -1, 0), rightTile);
+        if (room.doorRight != DoorState.NotPresent)
+        {
+            tilemap.SetTile(new Vector3Int(6, 0, 0), rightTile);
+            tilemap.SetTile(new Vector3Int(6, -1, 0), rightTile);
+        }
 
-        tilemap.SetTile(new Vector3Int(-7, 0, 0), leftTile);
-        tilemap.SetTile(new Vector3Int(-7, -1, 0), leftTile);
+        if (room.doorLeft != DoorState.NotPresent)
+        {
+            tilemap.SetTile(new Vector3Int(-7, 0, 0), leftTile);
+            tilemap.SetTile(new Vector3Int(-7, -1, 0), leftTile);
+        }
 
-        tilemap.SetTile(new Vector3Int(0, 4, 0), upTile);
-        tilemap.SetTile(new Vector3Int(-1, 4, 0), upTile);
+        if (room.doorUp != DoorState.NotPresent)
+        {
+            tilemap.SetTile(new Vector3Int(0, 4, 0), upTile);
+            tilemap.SetTile(new Vector3Int(-1, 4, 0), upTile);
+        }
 
-        tilemap.SetTile(new Vector3Int(0, -5, 0), downTile);
-        tilemap.SetTile(new Vector3Int(-1, -5, 0), downTile);
+        if (room.doorDown != DoorState.NotPresent)
+        {
+            tilemap.SetTile(new Vector3Int(0, -5, 0), downTile);
+            tilemap.SetTile(new Vector3Int(-1, -5, 0), downTile);
+        }
     }
 }
