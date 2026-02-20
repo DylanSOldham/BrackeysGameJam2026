@@ -16,7 +16,7 @@ public class SnakeHead : MonoBehaviour
         
     }
 
-    void TakeDamage(float amount)
+    void TakeDamage(float amount) // Do not remove, this is called via message
     {
         snake.TakeDamage(amount);
     }

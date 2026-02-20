@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    public GameObject head;
-    public GameObject tail;
+    public GameObject headObj;
+    public GameObject tailObj;
 
+    private SnakeHead head;
+    private SnakeTail tail;
 
     private BossPosition headPos = BossPosition.Back;
     private BossPosition tailPos = BossPosition.Away;
@@ -35,17 +37,20 @@ public class Snake : MonoBehaviour
 
     void Start()
     {
+        head = headObj.GetComponent<SnakeHead>();
+        tail = tailObj.GetComponent<SnakeTail>();
+
         positions[(int) BossPosition.Back] = new Vector2(0.0f, 2.5f);
         positions[(int) BossPosition.Left] = new Vector2(-4.0f, -2.0f);
         positions[(int) BossPosition.Right] = new Vector2(4.0f, -2.0f);
         positions[(int) BossPosition.Away] = new Vector2(1e5f, 0.0f);
+
+        headObj.transform.localPosition = positions[(int)headPos];
+        tailObj.transform.localPosition = positions[(int)tailPos];
     }
 
     void Update()
     {
-        head.transform.localPosition = positions[(int)headPos];
-        tail.transform.localPosition = positions[(int)tailPos];
-
         switch (state)
         {
             case BossState.Intro:
@@ -68,6 +73,7 @@ public class Snake : MonoBehaviour
                 do
                 {
                     headPos = (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                    headObj.transform.localPosition = positions[(int)headPos];
                 } while (headPos == tailPos);
             }
             else
@@ -84,8 +90,10 @@ public class Snake : MonoBehaviour
             {
                 do
                 {
-                    tailPos = (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                    tailPos =  (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                    tailObj.transform.localPosition = positions[(int)tailPos];
                 } while (tailPos == headPos);
+                tail.DoAttack();
             } else
             {
                 tailPos = BossPosition.Away;

@@ -9095,8 +9095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f078133b63f86a43be812cb857e2c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Snake
-  head: {fileID: 1113355508}
-  tail: {fileID: 1468876340}
+  headObj: {fileID: 1113355508}
+  tailObj: {fileID: 1468876340}
 --- !u!1 &993105839
 GameObject:
   m_ObjectHideFlags: 0
