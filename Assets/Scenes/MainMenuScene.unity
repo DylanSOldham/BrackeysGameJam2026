@@ -3371,7 +3371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yuki
+  m_text: YukiMyah
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
   m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
@@ -6451,7 +6451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ricoco
+  m_text: Ricoalatte
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}
   m_sharedMaterial: {fileID: 1657147696602619432, guid: c6be092669d832c43bad9f1ccdf1fca3, type: 2}

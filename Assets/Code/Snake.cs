@@ -20,6 +20,9 @@ public class Snake : MonoBehaviour
 
     private float health = 20.0f;
 
+    [Header("Enemy Hit SFX")]
+    [SerializeField] private AudioLibrary.SFX snakeHit;
+
     enum BossPosition
     {
         Back = 0,
@@ -107,6 +110,19 @@ public class Snake : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+
+        if (AudioManager.Instance != null)
+        {
+            AudioClip clip = AudioManager.Instance.audioLibrary.GetSFX(snakeHit);
+
+            if (clip != null)
+            {
+                AudioManager.Instance.PlaySFX(clip);
+            }
+        }
+
+        //updateHealthUI();
+
         Debug.Log(health);
         if (health <= 0.0f)
         {

@@ -17,7 +17,7 @@ public class RoomManager : MonoBehaviour
     public GameObject[] RoomsList;
     public Minimap minimap;
     public Tile wallTile;
-
+    public GameMusicManager gameMusicManager;
     
     public class Room
     {
@@ -119,7 +119,12 @@ public class RoomManager : MonoBehaviour
                     }
                     else
                     {
+                        //BOSS ROOM
                         roomObject = Instantiate(RoomsList[RoomsList.Length-1], transform);
+                        if(gameMusicManager != null)
+                        {
+                            gameMusicManager.updateBossSong();
+                        }
                     }
 
                     roomObject.SetActive(false);

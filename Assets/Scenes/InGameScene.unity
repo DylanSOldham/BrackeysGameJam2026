@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameMusicManager
   normalSong: 1
   DeathSong: 3
-  bossMusic: 0
+  bossMusic: 4
 --- !u!4 &149522556
 Transform:
   m_ObjectHideFlags: 0
@@ -2491,6 +2491,7 @@ MonoBehaviour:
   - {fileID: 3984411681335074231, guid: bd34f28dfaded3247b0a1a0601f2d7c5, type: 3}
   minimap: {fileID: 438675091}
   wallTile: {fileID: 11400000, guid: f3ca04be3e0211945851939301bdde9c, type: 2}
+  gameMusicManager: {fileID: 149522555}
 --- !u!4 &204545476
 Transform:
   m_ObjectHideFlags: 0
@@ -8987,6 +8988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Snake
   headObj: {fileID: 1113355508}
   tailObj: {fileID: 1468876340}
+  snakeHit: 12
 --- !u!1 &993105839
 GameObject:
   m_ObjectHideFlags: 0
