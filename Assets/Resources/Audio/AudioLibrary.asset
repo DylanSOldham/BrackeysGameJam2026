@@ -15,14 +15,16 @@ MonoBehaviour:
   mainMenuMusic: {fileID: 8300000, guid: c70d74b454fcb824f9cc8b00dcc1f055, type: 3}
   gameMusic: {fileID: 8300000, guid: 6679afa391dd4264cbf0924ab3eba3ad, type: 3}
   storyMusic: {fileID: 8300000, guid: 1a8acdcfa3df0b644a78aca63549d3f4, type: 3}
+  deathSong: {fileID: 8300000, guid: 57a738e548aa64b4599e90d59b7b88d7, type: 3}
   buttonClick: {fileID: 8300000, guid: 176663487ee370c4bbd601f48be495c4, type: 3}
   buttonHighlight: {fileID: 8300000, guid: 02e06a9bc2b049c42a3481c890fecdda, type: 3}
   closeMenu: {fileID: 8300000, guid: 0900162d6dfec5f4bab5872f844f3e6c, type: 3}
   sliderMoving: {fileID: 8300000, guid: 41ed30029f48f8c4dbd482b9ad3068ec, type: 3}
-  playerMovement: {fileID: 8300000, guid: 36a56379863abeb48a63b52beab9d423, type: 3}
+  playerMovement: {fileID: 8300000, guid: 6c8de3ae60614594e916213eef99dda3, type: 3}
   frogMovement: {fileID: 0}
   playerShooting: {fileID: 8300000, guid: 25d10bb06ff5aa744bd46eb6a3100569, type: 3}
   playerHit: {fileID: 8300000, guid: 6797238f9ce6d8e409fc9927fccf5b77, type: 3}
   frogHit: {fileID: 8300000, guid: 50da5b967f5379446a4c62ea9d600e1a, type: 3}
   frogShooting: {fileID: 0}
   roomChange: {fileID: 0}
+  playerDied: {fileID: 8300000, guid: 42d21ea0cedf1d545a9e7fd27b7ccf1c, type: 3}

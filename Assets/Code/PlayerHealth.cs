@@ -6,12 +6,16 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    public GameObject gameOver;
+    public Player playerRef;
+    public GameMusicManager setMusicRef;
 
     private SpriteRenderer spriteRenderer;
 
     [Header("Sound Effects")]
     [SerializeField] private AudioLibrary.SFX PlayerHit;
     [SerializeField] private AudioLibrary.SFX PlayerRegainHP;
+    [SerializeField] private AudioLibrary.SFX playerDied;
 
     public HeartUI heartUI;
 
@@ -21,15 +25,6 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = 33f;
         currentHealth = 3f;
         heartUI.setHearts(this);
-    }
-
-    private void FixedUpdate()
-    {
-        if(currentHealth <= 0f)
-        {
-            //Destroy(gameObject);
-            //Game Over set active
-        }
     }
 
     public void gainHealth(float health)
@@ -48,6 +43,16 @@ public class PlayerHealth : MonoBehaviour
         heartUI.setHearts(this);
 
         PlaySound(PlayerHit);
+
+        if (currentHealth <= 0f)
+        {
+            //Destroy(gameObject);
+            //Game Over set active
+            gameOver.SetActive(true);
+            playerRef.alive = false;
+            PlaySound(playerDied);
+            setMusicRef.updateSongDeath();
+        }
 
         StopAllCoroutines(); // prevents stacking flashes
         StartCoroutine(DamageFlash());

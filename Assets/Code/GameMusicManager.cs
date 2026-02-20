@@ -3,7 +3,9 @@ using UnityEngine;
 public class GameMusicManager : MonoBehaviour
 {
     [Header("Music Effects")]
-    [SerializeField] private AudioLibrary.Music song;
+    [SerializeField] private AudioLibrary.Music normalSong;
+    [SerializeField] private AudioLibrary.Music DeathSong;
+    [SerializeField] private AudioLibrary.Music bossMusic;
 
     private AudioManager a;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,7 +17,7 @@ public class GameMusicManager : MonoBehaviour
 
     public void startSong()
     {
-        PlaySound(song);
+        PlaySound(normalSong);
     }
 
     private void PlaySound(AudioLibrary.Music song)
@@ -29,4 +31,15 @@ public class GameMusicManager : MonoBehaviour
             AudioManager.Instance.PlayMusic(clip);
         }
     }
+
+    public void updateSongDeath()
+    {
+        PlaySound(DeathSong);
+    }
+
+    public void updateBossSong()
+    {
+        PlaySound(bossMusic);
+    }
+
 }
