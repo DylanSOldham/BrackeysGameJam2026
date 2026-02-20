@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float bulletCooldown = 0.333f;
     public float timeSinceLastAttack = 0.333f;
 
+    public bool alive;
+
     private InputAction moveAction;
     private Rigidbody2D rigidBody;
     private Animator animator;
@@ -41,63 +43,67 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         lastMovementSound = 0f;
         movementSoundCooldown = 0.4f;
+        alive = true;
     }
 
     void Update()
     {
-        moveInput = moveAction.ReadValue<Vector2>();
-
-        if (Mathf.Abs(moveInput.x) < 0.01)
+        if (alive)
         {
-            if (moveInput.y > 0.0)
+            moveInput = moveAction.ReadValue<Vector2>();
+
+            if (Mathf.Abs(moveInput.x) < 0.01)
             {
-                facing = Direction.Up;
+                if (moveInput.y > 0.0)
+                {
+                    facing = Direction.Up;
+                }
+                if (moveInput.y < 0.0)
+                {
+                    facing = Direction.Down;
+                }
             }
-            if (moveInput.y < 0.0)
+
+            if (Mathf.Abs(moveInput.y) < 0.01)
             {
-                facing = Direction.Down;
+                if (moveInput.x > 0.0)
+                {
+                    facing = Direction.Right;
+                }
+                if (moveInput.x < 0.0)
+                {
+                    facing = Direction.Left;
+                }
             }
-        }
 
-        if (Mathf.Abs(moveInput.y) < 0.01)
-        {
-            if (moveInput.x > 0.0)
+            if (Mathf.Abs(moveInput.x - prevMoveInput.x) > 0.4 && Mathf.Abs(moveInput.x) > 0.01)
             {
-                facing = Direction.Right;
+                facing = moveInput.x > 0.0 ? Direction.Right : Direction.Left;
             }
-            if (moveInput.x < 0.0)
+            else if (Mathf.Abs(moveInput.y - prevMoveInput.y) > 0.4 && Mathf.Abs(moveInput.y) > 0.01)
             {
-                facing = Direction.Left;
+                facing = moveInput.y > 0.0 ? Direction.Up : Direction.Down;
             }
-        }
 
-        if (Mathf.Abs(moveInput.x - prevMoveInput.x) > 0.4 && Mathf.Abs(moveInput.x) > 0.01)
-        {
-            facing = moveInput.x > 0.0 ? Direction.Right : Direction.Left;
-        }
-        else if (Mathf.Abs(moveInput.y - prevMoveInput.y) > 0.4 && Mathf.Abs(moveInput.y) > 0.01)
-        {
-            facing = moveInput.y > 0.0 ? Direction.Up : Direction.Down;
-        }
+            animator.SetBool("faceLeft", facing == Direction.Left);
+            animator.SetBool("faceRight", facing == Direction.Right);
+            animator.SetBool("faceUp", facing == Direction.Up);
+            animator.SetBool("faceDown", facing == Direction.Down);
+            animator.SetBool("moving", rigidBody.linearVelocity.magnitude > 0.01f);
+            spriteRenderer.flipX = facing == Direction.Left;
 
-        animator.SetBool("faceLeft", facing == Direction.Left);
-        animator.SetBool("faceRight",  facing == Direction.Right);
-        animator.SetBool("faceUp",    facing == Direction.Up);
-        animator.SetBool("faceDown",  facing == Direction.Down);
-        animator.SetBool("moving", rigidBody.linearVelocity.magnitude > 0.01f);
-        spriteRenderer.flipX = facing == Direction.Left;
+            if (shootAction.WasPerformedThisFrame() && (timeSinceLastAttack >= bulletCooldown))
+            {
+                shoot();
+                timeSinceLastAttack = 0f;
+            }
+            else
+            {
+                timeSinceLastAttack += Time.deltaTime;
+            }
 
-        if (shootAction.WasPerformedThisFrame() && (timeSinceLastAttack >= bulletCooldown)) 
-        {
-            shoot();
-            timeSinceLastAttack = 0f;
+            prevMoveInput = moveInput;
         }
-        else
-        {
-            timeSinceLastAttack += Time.deltaTime;
-        }
-
-        prevMoveInput = moveInput;
     }
 
     public void shoot()
@@ -127,20 +133,23 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidBody.AddForce(moveAcceleration * moveInput);
-        if (Mathf.Abs(moveInput.x) < 0.01f)
+        if (alive)
         {
-            rigidBody.linearVelocityX = 0.0f;
-        }
-        if (Mathf.Abs(moveInput.y) < 0.01f) 
-        {
-            rigidBody.linearVelocityY = 0.0f;
-        }
-        rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
+            rigidBody.AddForce(moveAcceleration * moveInput);
+            if (Mathf.Abs(moveInput.x) < 0.01f)
+            {
+                rigidBody.linearVelocityX = 0.0f;
+            }
+            if (Mathf.Abs(moveInput.y) < 0.01f)
+            {
+                rigidBody.linearVelocityY = 0.0f;
+            }
+            rigidBody.linearVelocity = Vector2.ClampMagnitude(rigidBody.linearVelocity, moveSpeed);
 
-        if((Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) > 0.01f)
-        {
-            TryPlayMovement();
+            if ((Mathf.Abs(rigidBody.linearVelocityX) + Mathf.Abs(rigidBody.linearVelocityY)) > 0.01f)
+            {
+                TryPlayMovement();
+            }
         }
     }
 

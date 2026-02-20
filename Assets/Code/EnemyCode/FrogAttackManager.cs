@@ -19,7 +19,10 @@ public class FrogAttackManager : MonoBehaviour
 
             if (player != null)
             {
-                player.takeDamage(damage);
+                if(player.currentHealth > 0)
+                {
+                    player.takeDamage(damage);
+                }
             }
 
             Destroy(gameObject);

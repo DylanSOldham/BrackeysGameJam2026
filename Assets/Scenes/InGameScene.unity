@@ -1574,7 +1574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c185e6134d9bcc498a5bd6c0f44a4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMusicManager
-  song: 1
+  normalSong: 1
+  DeathSong: 3
+  bossMusic: 0
 --- !u!4 &149522556
 Transform:
   m_ObjectHideFlags: 0
@@ -12863,6 +12865,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6186984698230611074, guid: 16ecc7645c5d7264e97294447cb0a397, type: 3}
   bulletCooldown: 0.333
   timeSinceLastAttack: 0.333
+  alive: 0
   PlayerMovement: 4
   movementSoundCooldown: 0.4
   shootSFX: 6
@@ -12966,8 +12969,11 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   gameOver: {fileID: 1064350430}
+  playerRef: {fileID: 1384705660}
+  setMusicRef: {fileID: 149522555}
   PlayerHit: 7
   PlayerRegainHP: 0
+  playerDied: 11
   heartUI: {fileID: 152091563}
 --- !u!1 &1397639316
 GameObject:

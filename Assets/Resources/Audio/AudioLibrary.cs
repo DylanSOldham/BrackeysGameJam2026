@@ -7,6 +7,7 @@ public class AudioLibrary : ScriptableObject
     public AudioClip mainMenuMusic;
     public AudioClip gameMusic;
     public AudioClip storyMusic;
+    public AudioClip deathSong;
 
     [Header("SFX")]
     public AudioClip buttonClick;
@@ -20,6 +21,7 @@ public class AudioLibrary : ScriptableObject
     public AudioClip frogHit;
     public AudioClip frogShooting;
     public AudioClip roomChange;
+    public AudioClip playerDied;
 
 
     // Enum for easy dropdown selection
@@ -27,7 +29,8 @@ public class AudioLibrary : ScriptableObject
     {
         MainMenu,
         GameMusic,
-        StoryMusic
+        StoryMusic,
+        DeathSong
     }
 
     // Enum for easy dropdown selection
@@ -44,6 +47,7 @@ public class AudioLibrary : ScriptableObject
         frogHit,
         frogShooting,
         roomChange,
+        playerDied
     }
 
     // Helper to get clip from enum
@@ -54,6 +58,7 @@ public class AudioLibrary : ScriptableObject
             case Music.MainMenu: return mainMenuMusic;
             case Music.GameMusic: return gameMusic;
             case Music.StoryMusic: return storyMusic;
+            case Music.DeathSong: return deathSong;
             default: return null;
         }
     }
@@ -74,6 +79,7 @@ public class AudioLibrary : ScriptableObject
             case SFX.frogHit: return frogHit;
             case SFX.frogShooting: return frogShooting;
             case SFX.roomChange: return roomChange;
+            case SFX.playerDied: return playerDied;
             default: return null;
         }
     }
