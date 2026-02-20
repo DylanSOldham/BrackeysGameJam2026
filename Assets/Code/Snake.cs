@@ -79,6 +79,7 @@ public class Snake : MonoBehaviour
             else
             {
                 headPos = BossPosition.Away;
+                headObj.transform.localPosition = positions[(int)headPos];
             }
             headMoveTimer = 3.0f;
         }

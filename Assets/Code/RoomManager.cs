@@ -117,6 +117,10 @@ public class RoomManager : MonoBehaviour
                     room.obj = roomObject;
 
                     int numEnemies = Mathf.CeilToInt(Random.Range(0, 4));
+                    if (room.isSnakeRoom)
+                    {
+                        numEnemies = 0;
+                    }
                     for (int k = 0; k < numEnemies; k++)
                     {
                         GameObject enemy = Instantiate(frogPrefab, transform);
