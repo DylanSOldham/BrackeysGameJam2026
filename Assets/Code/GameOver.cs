@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private CanvasGroup fadeCanvas;
     [SerializeField] private float fadeDuration = 3f;
-
+    public GameObject clickable;
 
     private void OnEnable()
     {
@@ -27,6 +27,7 @@ public class GameOver : MonoBehaviour
         }
 
         fadeCanvas.alpha = 1f;
+        clickable.SetActive(true);
     }
 
 
