@@ -19,6 +19,7 @@ public class SnakeTail : MonoBehaviour
         Intro = 0,
         Sweep = 1,
         Idle  = 2,
+        Recede = 3,
     }
 
     void Start()
@@ -27,16 +28,21 @@ public class SnakeTail : MonoBehaviour
 
         animator = GetComponent<Animator>();
         animator.SetBool("Attacking", true);
+        animator.SetBool("Ready", false);
     }
 
     void Update()
     {
         if (phase == AttackPhase.Intro)
         {
-            animationTimer = 0.0f;
-            basePos = transform.position;
-            phase = AttackPhase.Sweep;
-            animator.SetBool("Attacking", true);
+            animationTimer += Time.deltaTime;
+            if (animationTimer > SWEEP_ANIM_LEN)
+            {
+                animator.SetBool("Ready", true);
+                animationTimer = 0.0f;
+                currentFrame = 0;
+                phase = AttackPhase.Sweep;
+            } 
         }
         if (phase == AttackPhase.Sweep)
         {
@@ -78,6 +84,10 @@ public class SnakeTail : MonoBehaviour
 
     public void DoAttack()
     {
+        animationTimer = 0.0f;
+        basePos = transform.position;
+        animator.SetBool("Attacking", true);
+        animator.SetBool("Ready", false);
         phase = AttackPhase.Intro;
     }
 }

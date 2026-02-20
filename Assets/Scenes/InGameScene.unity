@@ -9014,10 +9014,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 278148692}
-  - {fileID: 1742479390}
-  m_Father: {fileID: 774911029}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13614,7 +13612,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 256e74f00668a92469be4267c20bf326, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -20069,3 +20067,4 @@ SceneRoots:
   - {fileID: 1581786004}
   - {fileID: 204545476}
   - {fileID: 992302978}
+  - {fileID: 993105840}

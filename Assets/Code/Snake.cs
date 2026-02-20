@@ -98,6 +98,7 @@ public class Snake : MonoBehaviour
             } else
             {
                 tailPos = BossPosition.Away;
+                tailObj.transform.localPosition = positions[(int)tailPos];
             }
             tailAttackTimer = 2.0f;
         }
