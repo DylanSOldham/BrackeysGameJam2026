@@ -5713,6 +5713,7 @@ MonoBehaviour:
   - abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd\n abcd abcd abcd abcd abcd
     abcd abcd abcd
   delay: 0.1
+  mainMenu: 1
   currentIndex: 0
 --- !u!1 &1721039962
 GameObject:

@@ -9,6 +9,7 @@ public class TransitionCode : MonoBehaviour
     public TextMeshProUGUI textBox;      // Your TMP text object
     [TextArea(3, 10)] public string[] texts;   // Full string to display
     public float delay = 0.1f;          // Delay between each character
+    public bool mainMenu;
 
     public int currentIndex = 0;
 
@@ -79,7 +80,14 @@ public class TransitionCode : MonoBehaviour
         else
         {
             // All texts shown, load next scene
-            SceneManager.LoadScene("InGameScene");
+            if (mainMenu)
+            {
+                SceneManager.LoadScene("InGameScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("MainMenuScene");
+            }
         }
     }
 
