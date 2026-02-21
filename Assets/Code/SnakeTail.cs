@@ -45,16 +45,21 @@ public class SnakeTail : MonoBehaviour
                 }
                 break;
             case AttackPhase.Sweep:
-
+                colliderObject.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 if (animationTimer >= SWEEP_ANIM_LEN)
                 {
+                    colliderObject.transform.localPosition = new Vector3(0.0f, -1.0f, 0.0f);
                     transform.position = basePos;
                     phase = AttackPhase.Idle;
                     animationTimer = 0.0f;
                 }
 
-                //360 * (animationtimer/animationlength)
-                colliderObject.transform.rotation = Quaternion.Euler(0f, 0f, 360 * (animationTimer / SWEEP_ANIM_LEN));
+                float rotateAmount = 360 * (animationTimer / SWEEP_ANIM_LEN);
+                if (snake.tailPos != Snake.BossPosition.Right)
+                {
+                    rotateAmount = -rotateAmount;
+                }
+                colliderObject.transform.rotation = Quaternion.Euler(0f, 0f, rotateAmount);
 
                 break;
             case AttackPhase.Idle:

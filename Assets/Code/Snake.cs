@@ -12,7 +12,7 @@ public class Snake : MonoBehaviour
     private SpriteRenderer tailSpriteRenderer;
 
     private BossPosition headPos = BossPosition.Back;
-    private BossPosition tailPos = BossPosition.Left;
+    public  BossPosition tailPos = BossPosition.Left;
 
     private BossState state = BossState.BasicPattern;
     private Dictionary<int, Vector3> positions = new();
@@ -29,7 +29,7 @@ public class Snake : MonoBehaviour
     [Header("Enemy Hit SFX")]
     [SerializeField] private AudioLibrary.SFX snakeHit;
 
-    enum BossPosition
+    public enum BossPosition
     {
         Back = 0,
         Left = 1,
