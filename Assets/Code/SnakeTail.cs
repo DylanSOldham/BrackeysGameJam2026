@@ -83,7 +83,7 @@ public class SnakeTail : MonoBehaviour
         animator.SetInteger("Phase", (int)phase);
     }
 
-    void TakeDamage(float amount) // Do not remove, this is called via message
+    public void TakeDamage(float amount) // Do not remove, this is called via message
     {
         snake.TakeDamage(amount / 2.0f);
     }
