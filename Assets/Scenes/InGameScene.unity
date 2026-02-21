@@ -9355,11 +9355,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransitionCode
   textBox: {fileID: 517445753}
   texts:
-  - Blah Blah Blah Blah Blah Blah Blah Blah Blah\nBlah Blah Blah Blah Blah Blah Blah
-    Blah Blah Blah
-  - abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd\n abcd abcd abcd abcd abcd
-    abcd abcd abcd
-  delay: 0.1
+  - "I was small then, but I\u2019ve grown stronger since."
+  - Just like she always said I would.
+  - "So now\\nIt will never take anyone again.\r"
+  delay: 0.05
   mainMenu: 0
   currentIndex: 0
   fadeCanvas: {fileID: 837901687}

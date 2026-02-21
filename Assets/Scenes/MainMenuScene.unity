@@ -5709,11 +5709,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransitionCode
   textBox: {fileID: 1264335245}
   texts:
-  - Blah Blah Blah Blah Blah Blah Blah Blah Blah\nBlah Blah Blah Blah Blah Blah Blah
-    Blah Blah Blah
-  - abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd\n abcd abcd abcd abcd abcd
-    abcd abcd abcd
-  delay: 0.1
+  - I come in search of the dreaded Yakumama.
+  - "It\u2019s been 8 years since it devoured her. "
+  - My dear, far too curious sister.
+  delay: 0.05
   mainMenu: 1
   currentIndex: 0
   fadeCanvas: {fileID: 1707492115}
