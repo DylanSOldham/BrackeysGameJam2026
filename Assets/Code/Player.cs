@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float timeSinceLastAttack = 0.333f;
 
     public bool alive;
+    public bool won;
 
     private InputAction moveAction;
     private Rigidbody2D rigidBody;
@@ -44,11 +45,12 @@ public class Player : MonoBehaviour
         lastMovementSound = 0f;
         movementSoundCooldown = 0.4f;
         alive = true;
+        won = false;
     }
 
     void Update()
     {
-        if (alive)
+        if (alive && !won)
         {
             moveInput = moveAction.ReadValue<Vector2>();
 

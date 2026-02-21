@@ -2026,6 +2026,7 @@ MonoBehaviour:
   normalSong: 1
   DeathSong: 3
   bossMusic: 4
+  storyMusic: 2
 --- !u!4 &149522556
 Transform:
   m_ObjectHideFlags: 0
@@ -3977,6 +3978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SnakeHealthUI
   slider: {fileID: 474336512}
   transition: {fileID: 837901684}
+  player: {fileID: 1384705660}
+  manager: {fileID: 149522555}
 --- !u!1 &368597338
 GameObject:
   m_ObjectHideFlags: 0
@@ -13801,6 +13804,7 @@ MonoBehaviour:
   bulletCooldown: 0.333
   timeSinceLastAttack: 0.333
   alive: 0
+  won: 0
   PlayerMovement: 4
   movementSoundCooldown: 0.4
   shootSFX: 6

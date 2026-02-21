@@ -6,6 +6,7 @@ public class GameMusicManager : MonoBehaviour
     [SerializeField] private AudioLibrary.Music normalSong;
     [SerializeField] private AudioLibrary.Music DeathSong;
     [SerializeField] private AudioLibrary.Music bossMusic;
+    [SerializeField] private AudioLibrary.Music storyMusic;
 
     private AudioManager a;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,6 +41,11 @@ public class GameMusicManager : MonoBehaviour
     public void updateBossSong()
     {
         PlaySound(bossMusic);
+    }
+
+    public void updateStoryMusic()
+    {
+        PlaySound(storyMusic);
     }
 
 }
