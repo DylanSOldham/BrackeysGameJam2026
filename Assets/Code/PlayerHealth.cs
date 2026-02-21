@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(float damage)
     {
-        //currentHealth -= damage;
+        currentHealth -= damage;
 
         heartUI.setHearts(this);
 
