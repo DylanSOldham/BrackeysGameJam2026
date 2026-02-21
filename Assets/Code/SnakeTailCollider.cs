@@ -8,4 +8,16 @@ public class SnakeTailCollider : MonoBehaviour
         SnakeTail tail = tailObject.GetComponent<SnakeTail>();
         tail.TakeDamage(amount / 2.0f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("BAH");
+        if (collision.collider.CompareTag("Player"))
+        {
+            Debug.Log("HIT THE PLAYER");
+            PlayerHealth player = collision.collider.GetComponent<PlayerHealth>();
+            player.takeDamage(5);
+            return;
+        }
+    }
 }

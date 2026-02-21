@@ -14,7 +14,6 @@ public class FrogAttackManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("HITTING THE PLAYER");
             PlayerHealth player = collision.GetComponent<PlayerHealth>();
 
             if (player != null)
@@ -37,7 +36,6 @@ public class FrogAttackManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("NOT HITTING THE PLAYER");
             Destroy(gameObject);
         }
     }
