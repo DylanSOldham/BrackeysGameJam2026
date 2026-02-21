@@ -13,14 +13,16 @@ public class SnakeTail : MonoBehaviour
 
     private const float SWEEP_ANIM_LEN = 0.66666f;
     private const int SWEEP_ANIM_FRAMES = 8;
+    private const float ENTER_ANIM_LEN = 0.5f;
+    private const int ENTER_ANIM_FRAMES = 6;
 
     public enum AttackPhase
     {
-        Intro = 0,
-        Sweep = 1,
-        Idle  = 2,
-        Recede = 3,
-        Away = 4,
+        Away = 0,
+        Intro = 1,
+        Sweep = 2,
+        Idle  = 3,
+        Recede = 4,
     }
 
     void Start()
@@ -28,75 +30,70 @@ public class SnakeTail : MonoBehaviour
         basePos = transform.position;
 
         animator = GetComponent<Animator>();
-        animator.SetBool("Attacking", true);
-        animator.SetBool("Ready", false);
     }
 
     void Update()
     {
-        if (phase == AttackPhase.Intro)
-        {
-            animationTimer += Time.deltaTime;
-            if (animationTimer > SWEEP_ANIM_LEN)
-            {
-                animator.SetBool("Ready", true);
-                animationTimer = 0.0f;
-                currentFrame = 0;
-                phase = AttackPhase.Sweep;
-            } 
-        }
-        if (phase == AttackPhase.Sweep)
-        {
-            animationTimer += Time.deltaTime;
-            if (animationTimer > SWEEP_ANIM_LEN / SWEEP_ANIM_FRAMES)
-            {
-                currentFrame += 1;
-                animationTimer = 0.0f;
+        animationTimer += Time.deltaTime;
 
-                float[] yPoses = {
-                0.0f, 0.0f, 0.5f, 1.5f,
-                1.5f, 1.5f, 1.0f, -0.5f
-            };
-
-                float[] xPoses = {
-                0.0f, -1.0f, -1.5f, -1.5f,
-                0.0f, 0.5f, 1.0f, 1.0f
-            };
-
-                float newX = basePos.x - xPoses[currentFrame % SWEEP_ANIM_FRAMES];
-                float newY = basePos.y - yPoses[currentFrame % SWEEP_ANIM_FRAMES];
-                transform.position = new Vector2(newX, newY);
-            }
-
-            if (currentFrame == SWEEP_ANIM_FRAMES - 1)
-            {
-                currentFrame = 0;
-                animationTimer = 0.0f;
-                transform.position = basePos;
-                animator.SetBool("Attacking", false);
-                phase = AttackPhase.Idle;
-            }
-        }
-        if (phase == AttackPhase.Idle)
+        switch (phase)
         {
-            animationTimer += Time.deltaTime;
-            if (animationTimer > 2.0f)
-            {
-                animator.SetBool("Leaving", true);
-                phase = AttackPhase.Recede;
-                animationTimer = 0.0f;
-            }
+            case AttackPhase.Intro:
+                if (animationTimer > SWEEP_ANIM_LEN)
+                {
+                    phase = AttackPhase.Sweep;
+                    currentFrame = 0;
+                    animationTimer = 0.0f;
+                }
+                break;
+            case AttackPhase.Sweep:
+                if (animationTimer > SWEEP_ANIM_LEN / SWEEP_ANIM_FRAMES)
+                {
+                    currentFrame += 1;
+                    animationTimer = 0.0f;
+
+                    float[] yPoses = {
+                        0.0f, 0.0f, 0.5f, 1.5f,
+                        1.5f, 1.5f, 1.0f, -0.5f
+                    };
+
+                    float[] xPoses = {
+                        0.0f, -1.0f, -1.5f, -1.5f,
+                        0.0f, 0.5f, 1.0f, 1.0f
+                    };
+
+                    float newX = basePos.x - xPoses[currentFrame % SWEEP_ANIM_FRAMES];
+                    float newY = basePos.y - yPoses[currentFrame % SWEEP_ANIM_FRAMES];
+                    transform.position = new Vector2(newX, newY);
+                }
+
+                if (currentFrame == SWEEP_ANIM_FRAMES - 1)
+                {
+                    transform.position = basePos;
+                    phase = AttackPhase.Idle;
+                    currentFrame = 0;
+                    animationTimer = 0.0f;
+                }
+                break;
+            case AttackPhase.Idle:
+                if (animationTimer > 2.0f)
+                {
+                    phase = AttackPhase.Recede;
+                    animationTimer = 0.0f;
+                }
+                break;
+            case AttackPhase.Recede:
+                if (animationTimer > ENTER_ANIM_LEN)
+                {
+                    phase = AttackPhase.Away;
+                    animationTimer = 0.0f;
+                }
+                break;
+            case AttackPhase.Away:
+                break;
         }
-        if (phase == AttackPhase.Recede)
-        {
-            animationTimer += Time.deltaTime;
-            if (animationTimer > 2.0f)
-            {
-                animator.SetBool("Leaving", true);
-                phase = AttackPhase.Away;
-                animationTimer = 0.0f;
-            }
-        }
+
+        animator.SetInteger("Phase", (int)phase);
     }
 
     void TakeDamage(float amount) // Do not remove, this is called via message
@@ -108,8 +105,7 @@ public class SnakeTail : MonoBehaviour
     {
         animationTimer = 0.0f;
         basePos = transform.position;
-        animator.SetBool("Attacking", true);
-        animator.SetBool("Ready", false);
         phase = AttackPhase.Intro;
+        animator.SetInteger("Phase", (int)phase);
     }
 }

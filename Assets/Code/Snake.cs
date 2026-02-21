@@ -12,7 +12,7 @@ public class Snake : MonoBehaviour
     private SpriteRenderer tailSpriteRenderer;
 
     private BossPosition headPos = BossPosition.Back;
-    private BossPosition tailPos = BossPosition.Away;
+    private BossPosition tailPos = BossPosition.Left;
 
     private BossState state = BossState.BasicPattern;
     private Dictionary<int, Vector3> positions = new();
@@ -96,11 +96,12 @@ public class Snake : MonoBehaviour
             headMoveTimer = 3.0f;
         }
 
-        if (tail.phase == SnakeTail.AttackPhase.Away)
+        if (tail.phase == SnakeTail.AttackPhase.Away && tailPos != BossPosition.Away)
         {
             tailPos = BossPosition.Away;
             tailObj.transform.localPosition = positions[(int)tailPos];
-        }
+            tailAttackTimer = 2.0f;
+        } 
         tailAttackTimer -= Time.deltaTime;
         if (tailAttackTimer < 0)
         {
