@@ -15,6 +15,7 @@ public class RoomManager : MonoBehaviour
     public GameObject frogPrefab;
     public GameObject gameCamera;
     public GameObject[] RoomsList;
+    public GameObject snakeHealthUI;
     public Minimap minimap;
     public Tile wallTile;
     public GameMusicManager gameMusicManager;
@@ -114,13 +115,24 @@ public class RoomManager : MonoBehaviour
 
                     if (!room.isSnakeRoom)
                     {
+                        Debug.Log("Normal Room");
                         int randomIndex = Random.Range(0, RoomsList.Length - 1);
                         roomObject = Instantiate(RoomsList[randomIndex], transform);
                     }
                     else
                     {
                         //BOSS ROOM
+                        Debug.Log("Boss Room");
                         roomObject = Instantiate(RoomsList[RoomsList.Length-1], transform);
+                        if(snakeHealthUI != null)
+                        {
+                            snakeHealthUI.SetActive(true);
+                            SnakeHealthUI a = snakeHealthUI.GetComponent<SnakeHealthUI>();
+                            if(a != null)
+                            {
+                                a.setSlider(1f); //set full hp
+                            }
+                        }
                         if(gameMusicManager != null)
                         {
                             gameMusicManager.updateBossSong();

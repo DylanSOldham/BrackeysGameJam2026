@@ -18,7 +18,9 @@ public class Snake : MonoBehaviour
     private float headMoveTimer = 3.0f;
     private float tailAttackTimer = 2.0f;
 
-    private float health = 20.0f;
+    private float maxHealth = 20.0f;
+    private float currentHealth = 20.0f;
+    public SnakeHealthUI healthUI;
 
     [Header("Enemy Hit SFX")]
     [SerializeField] private AudioLibrary.SFX snakeHit;
@@ -109,7 +111,7 @@ public class Snake : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
+        currentHealth -= amount;
 
         if (AudioManager.Instance != null)
         {
@@ -120,11 +122,14 @@ public class Snake : MonoBehaviour
                 AudioManager.Instance.PlaySFX(clip);
             }
         }
+        if (healthUI != null) 
+        {
+            float percentHp = currentHealth / maxHealth;
+            healthUI.setSlider(percentHp);
+        }
 
-        //updateHealthUI();
-
-        Debug.Log(health);
-        if (health <= 0.0f)
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0.0f)
         {
             Destroy(gameObject);
         }
