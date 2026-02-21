@@ -22,7 +22,7 @@ public class Snake : MonoBehaviour
     private float headMoveTimer = 3.0f;
     private float tailAttackTimer = tailCooldown;
 
-    private float maxHealth = 20.0f;
+    private float maxHealth = 150.0f;
     private float currentHealth = 20.0f;
     public SnakeHealthUI healthUI;
 
