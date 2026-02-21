@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: b5a0b2cbb3cd1fd48b7c7c112456afac
+guid: 50468bfa885eaf046bc543b36d0a2ddb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6796360674674512880
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_0
+      213: 5331399682463461342
+    second: tailsweep_0
   - first:
-      213: -1027372995268735653
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_1
+      213: 4278848669755218657
+    second: tailsweep_1
   - first:
-      213: -3716304032948236742
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_2
+      213: 3382156630296396952
+    second: tailsweep_2
   - first:
-      213: 4593699774674676812
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_3
+      213: 7976395841353849869
+    second: tailsweep_3
   - first:
-      213: 2002678144209807828
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_4
+      213: -3231107702815929010
+    second: tailsweep_4
   - first:
-      213: 90606814162709117
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_5
+      213: -6187498955715872270
+    second: tailsweep_5
   - first:
-      213: -8087049729882007522
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_6
+      213: 7089342924738409183
+    second: tailsweep_6
   - first:
-      213: 8363158491617654823
-    second: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_7
+      213: -5901588214944074023
+    second: tailsweep_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_0
+      name: tailsweep_0
       rect:
         serializedVersion: 2
-        x: 120
-        y: 1279
-        width: 169
-        height: 234
+        x: 2
+        y: 1016
+        width: 465
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01c679c99f97ea1a0800000000000000
-      internalID: -6796360674674512880
+      spriteID: edf6dd4a3cfecf940800000000000000
+      internalID: 5331399682463461342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_1
+      name: tailsweep_1
       rect:
         serializedVersion: 2
-        x: 657
-        y: 1278
-        width: 290
-        height: 247
+        x: 487
+        y: 1016
+        width: 465
+        height: 509
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5d8d2d34b90eb1f0800000000000000
-      internalID: -1027372995268735653
+      spriteID: 1ea9960e136816b30800000000000000
+      internalID: 4278848669755218657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_2
+      name: tailsweep_2
       rect:
         serializedVersion: 2
-        x: 1172
-        y: 1223
-        width: 318
-        height: 149
+        x: 1005
+        y: 1021
+        width: 485
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a3ec4cefb290d6cc0800000000000000
-      internalID: -3716304032948236742
+      spriteID: 8948c8b2985dfee20800000000000000
+      internalID: 3382156630296396952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_3
+      name: tailsweep_3
       rect:
         serializedVersion: 2
-        x: 139
-        y: 564
-        width: 301
-        height: 267
+        x: 21
+        y: 514
+        width: 465
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4ca64a4b9910cf30800000000000000
-      internalID: 4593699774674676812
+      spriteID: d0c9cc7c1c9d1be60800000000000000
+      internalID: 7976395841353849869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_4
+      name: tailsweep_4
       rect:
         serializedVersion: 2
-        x: 653
-        y: 516
-        width: 148
-        height: 303
+        x: 541
+        y: 508
+        width: 465
+        height: 504
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4d960195921facb10800000000000000
-      internalID: 2002678144209807828
+      spriteID: e4dc0a6d9acc823d0800000000000000
+      internalID: -3231107702815929010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_5
+      name: tailsweep_5
       rect:
         serializedVersion: 2
-        x: 1076
-        y: 518
-        width: 202
-        height: 296
+        x: 1049
+        y: 505
+        width: 465
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +246,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7ae56cda66e14100800000000000000
-      internalID: 90606814162709117
+      spriteID: 2f974788b76912aa0800000000000000
+      internalID: -6187498955715872270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_6
+      name: tailsweep_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 149
-        width: 254
-        height: 180
+        y: 0
+        width: 465
+        height: 498
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e18d6712e1705cf80800000000000000
-      internalID: -8087049729882007522
+      spriteID: fd236ff34d7626260800000000000000
+      internalID: 7089342924738409183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_7
+      name: tailsweep_7
       rect:
         serializedVersion: 2
-        x: 550
-        y: 258
-        width: 216
-        height: 240
+        x: 490
+        y: 1
+        width: 465
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72879259658ef0470800000000000000
-      internalID: 8363158491617654823
+      spriteID: 9d670a559c8591ea0800000000000000
+      internalID: -5901588214944074023
       vertices: []
       indices: 
       edges: []
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_0: -6796360674674512880
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_1: -1027372995268735653
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_2: -3716304032948236742
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_3: 4593699774674676812
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_4: 2002678144209807828
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_5: 90606814162709117
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_6: -8087049729882007522
-      A1BEABB9-4AC2-4379-ADFF-45291FAA49E4_7: 8363158491617654823
+      tailsweep_0: 5331399682463461342
+      tailsweep_1: 4278848669755218657
+      tailsweep_2: 3382156630296396952
+      tailsweep_3: 7976395841353849869
+      tailsweep_4: -3231107702815929010
+      tailsweep_5: -6187498955715872270
+      tailsweep_6: 7089342924738409183
+      tailsweep_7: -5901588214944074023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
