@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class TransitionCode : MonoBehaviour
 {
@@ -13,14 +14,37 @@ public class TransitionCode : MonoBehaviour
 
     public int currentIndex = 0;
 
+    [SerializeField] private CanvasGroup fadeCanvas;
+    [SerializeField] private float fadeDuration = 3f;
+    public GameObject clickable;
+
     private Coroutine typingCoroutine;
 
     private void OnEnable()
     {
+
+        fadeCanvas.alpha = 0f;
+        StartCoroutine(FadeAndLoad());
+    }
+
+    private IEnumerator FadeAndLoad()
+    {
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            fadeCanvas.alpha = timer / fadeDuration;
+            yield return null;
+        }
+
+        fadeCanvas.alpha = 1f;
+        clickable.SetActive(true);
         currentIndex = 0;
         if (texts.Length > 0)
             StartTyping(texts[currentIndex]);
     }
+
 
     // Start the effect
     public void StartTyping(string newText)
