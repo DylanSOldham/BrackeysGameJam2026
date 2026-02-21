@@ -44,6 +44,8 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
+        snakeHealthUI.SetActive(false);
+
         for (int i = 0; i < DUNGEON_SIZE; i++) {
             for (int j = 0; j < DUNGEON_SIZE; j++) {
                 Room room = new Room();
@@ -103,7 +105,7 @@ public class RoomManager : MonoBehaviour
         }
         rooms[maxIndex, DUNGEON_SIZE - 1].isSnakeRoom = true;
         snake.transform.position = new Vector3(maxIndex * ROOM_WIDTH, (DUNGEON_SIZE - 1) * ROOM_HEIGHT, 0.0f);
-        activeRoom = new Vector2Int(maxIndex, (DUNGEON_SIZE - 1));
+        //activeRoom = new Vector2Int(maxIndex, (DUNGEON_SIZE - 1));
 
         // Instantiate the prefabs for each existent room
         for (int i = 0; i < DUNGEON_SIZE; i++) {
@@ -115,28 +117,13 @@ public class RoomManager : MonoBehaviour
 
                     if (!room.isSnakeRoom)
                     {
-                        Debug.Log("Normal Room");
                         int randomIndex = Random.Range(0, RoomsList.Length - 1);
                         roomObject = Instantiate(RoomsList[randomIndex], transform);
                     }
                     else
                     {
                         //BOSS ROOM
-                        Debug.Log("Boss Room");
                         roomObject = Instantiate(RoomsList[RoomsList.Length-1], transform);
-                        if(snakeHealthUI != null)
-                        {
-                            snakeHealthUI.SetActive(true);
-                            SnakeHealthUI a = snakeHealthUI.GetComponent<SnakeHealthUI>();
-                            if(a != null)
-                            {
-                                a.setSlider(1f); //set full hp
-                            }
-                        }
-                        if(gameMusicManager != null)
-                        {
-                            gameMusicManager.updateBossSong();
-                        }
                     }
 
                     roomObject.SetActive(false);
@@ -219,6 +206,22 @@ public class RoomManager : MonoBehaviour
             };
             RefreshDoors();
 
+            if (newRoom.isSnakeRoom)
+            {
+                if (snakeHealthUI != null)
+                {
+                    snakeHealthUI.SetActive(true);
+                    SnakeHealthUI a = snakeHealthUI.GetComponent<SnakeHealthUI>();
+                    if (a != null)
+                    {
+                        a.setSlider(1f); //set full hp
+                    }
+                }
+                if (gameMusicManager != null)
+                {
+                    gameMusicManager.updateBossSong();
+                }
+            }
 
             newRoom.obj.SetActive(true);
             minimap.RoomEntered(activeRoom, newRoom.doorUp, newRoom.doorDown, newRoom.doorLeft, newRoom.doorRight);
