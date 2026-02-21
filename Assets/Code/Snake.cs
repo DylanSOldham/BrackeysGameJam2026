@@ -8,6 +8,8 @@ public class Snake : MonoBehaviour
 
     private SnakeHead head;
     private SnakeTail tail;
+    private SpriteRenderer headSpriteRenderer;
+    private SpriteRenderer tailSpriteRenderer;
 
     private BossPosition headPos = BossPosition.Back;
     private BossPosition tailPos = BossPosition.Away;
@@ -15,8 +17,10 @@ public class Snake : MonoBehaviour
     private BossState state = BossState.BasicPattern;
     private Dictionary<int, Vector3> positions = new();
 
+    static private float tailCooldown = 2.0f;
+
     private float headMoveTimer = 3.0f;
-    private float tailAttackTimer = 2.0f;
+    private float tailAttackTimer = tailCooldown;
 
     private float maxHealth = 20.0f;
     private float currentHealth = 20.0f;
@@ -43,7 +47,9 @@ public class Snake : MonoBehaviour
     void Start()
     {
         head = headObj.GetComponent<SnakeHead>();
+        headSpriteRenderer = headObj.GetComponent<SpriteRenderer>();
         tail = tailObj.GetComponent<SnakeTail>();
+        tailSpriteRenderer = tailObj.GetComponent<SpriteRenderer>();
 
         positions[(int) BossPosition.Back] = new Vector2(0.0f, 2.5f);
         positions[(int) BossPosition.Left] = new Vector2(-4.0f, -2.0f);
@@ -86,26 +92,30 @@ public class Snake : MonoBehaviour
                 headPos = BossPosition.Away;
                 headObj.transform.localPosition = positions[(int)headPos];
             }
+            headSpriteRenderer.flipX = headPos == BossPosition.Right;
             headMoveTimer = 3.0f;
         }
 
+        if (tail.phase == SnakeTail.AttackPhase.Away)
+        {
+            tailPos = BossPosition.Away;
+            tailObj.transform.localPosition = positions[(int)tailPos];
+        }
         tailAttackTimer -= Time.deltaTime;
         if (tailAttackTimer < 0)
         {
-            if (tailPos == BossPosition.Away)
+            if (tail.phase == SnakeTail.AttackPhase.Away)
             {
                 do
                 {
-                    tailPos =  (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
+                    tailPos = (BossPosition)Mathf.FloorToInt(Random.Range(0.0f, 3.0f));
                     tailObj.transform.localPosition = positions[(int)tailPos];
                 } while (tailPos == headPos);
                 tail.DoAttack();
-            } else
-            {
-                tailPos = BossPosition.Away;
-                tailObj.transform.localPosition = positions[(int)tailPos];
+
+                tailSpriteRenderer.flipX = tailPos == BossPosition.Right;
+                tailAttackTimer = 3.0f;
             }
-            tailAttackTimer = 2.0f;
         }
     }
 

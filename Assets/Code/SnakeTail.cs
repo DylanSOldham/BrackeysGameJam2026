@@ -9,17 +9,18 @@ public class SnakeTail : MonoBehaviour
     private Vector2 basePos;
 
     private int currentFrame = 0;
-    private AttackPhase phase = AttackPhase.Idle;
+    public AttackPhase phase = AttackPhase.Away;
 
     private const float SWEEP_ANIM_LEN = 0.66666f;
     private const int SWEEP_ANIM_FRAMES = 8;
 
-    enum AttackPhase
+    public enum AttackPhase
     {
         Intro = 0,
         Sweep = 1,
         Idle  = 2,
         Recede = 3,
+        Away = 4,
     }
 
     void Start()
@@ -70,9 +71,30 @@ public class SnakeTail : MonoBehaviour
             if (currentFrame == SWEEP_ANIM_FRAMES - 1)
             {
                 currentFrame = 0;
+                animationTimer = 0.0f;
                 transform.position = basePos;
                 animator.SetBool("Attacking", false);
                 phase = AttackPhase.Idle;
+            }
+        }
+        if (phase == AttackPhase.Idle)
+        {
+            animationTimer += Time.deltaTime;
+            if (animationTimer > 2.0f)
+            {
+                animator.SetBool("Leaving", true);
+                phase = AttackPhase.Recede;
+                animationTimer = 0.0f;
+            }
+        }
+        if (phase == AttackPhase.Recede)
+        {
+            animationTimer += Time.deltaTime;
+            if (animationTimer > 2.0f)
+            {
+                animator.SetBool("Leaving", true);
+                phase = AttackPhase.Away;
+                animationTimer = 0.0f;
             }
         }
     }
