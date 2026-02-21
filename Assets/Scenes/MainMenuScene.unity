@@ -5664,6 +5664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707492113}
   - component: {fileID: 1707492114}
+  - component: {fileID: 1707492115}
   m_Layer: 5
   m_Name: Transition
   m_TagString: Untagged
@@ -5713,7 +5714,23 @@ MonoBehaviour:
   - abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd\n abcd abcd abcd abcd abcd
     abcd abcd abcd
   delay: 0.1
+  mainMenu: 1
   currentIndex: 0
+  fadeCanvas: {fileID: 1707492115}
+  fadeDuration: 3
+  clickable: {fileID: 2109926868}
+--- !u!225 &1707492115
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707492112}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1721039962
 GameObject:
   m_ObjectHideFlags: 0
@@ -6977,7 +6994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2109926869
 RectTransform:
   m_ObjectHideFlags: 0

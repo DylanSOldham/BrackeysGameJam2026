@@ -141,7 +141,12 @@ public class Snake : MonoBehaviour
         Debug.Log(currentHealth);
         if (currentHealth <= 0.0f)
         {
+            if(healthUI != null)
+            {
+                healthUI.setTransition();
+            }
             Destroy(gameObject);
+
         }
     }
 }
