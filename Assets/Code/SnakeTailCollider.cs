@@ -16,7 +16,7 @@ public class SnakeTailCollider : MonoBehaviour
         {
             Debug.Log("HIT THE PLAYER");
             PlayerHealth player = collision.collider.GetComponent<PlayerHealth>();
-            player.takeDamage(5);
+            player.takeDamage(1.5f);
             return;
         }
     }

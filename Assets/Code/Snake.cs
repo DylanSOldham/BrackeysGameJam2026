@@ -23,7 +23,7 @@ public class Snake : MonoBehaviour
     private float tailAttackTimer = tailCooldown;
 
     private float maxHealth = 150.0f;
-    private float currentHealth = 20.0f;
+    private float currentHealth = 150.0f;
     public SnakeHealthUI healthUI;
 
     [Header("Enemy Hit SFX")]
