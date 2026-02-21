@@ -36,7 +36,7 @@ public class SnakeTail : MonoBehaviour
         switch (phase)
         {
             case AttackPhase.Intro:
-                if (animationTimer >= SWEEP_ANIM_LEN)
+                if (animationTimer >= ENTER_ANIM_LEN)
                 {
                     transform.position = basePos + new Vector2(0.0f, -1.5f);
                     phase = AttackPhase.Sweep;
