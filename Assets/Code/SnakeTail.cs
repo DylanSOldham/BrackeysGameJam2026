@@ -8,6 +8,7 @@ public class SnakeTail : MonoBehaviour
     private float animationTimer = 0.0f;
     private Vector2 basePos;
 
+    public GameObject colliderObject;
     public AttackPhase phase = AttackPhase.Away;
 
     private const float SWEEP_ANIM_LEN = 0.66666f;
@@ -44,12 +45,17 @@ public class SnakeTail : MonoBehaviour
                 }
                 break;
             case AttackPhase.Sweep:
+
                 if (animationTimer >= SWEEP_ANIM_LEN)
                 {
                     transform.position = basePos;
                     phase = AttackPhase.Idle;
                     animationTimer = 0.0f;
                 }
+
+                //360 * (animationtimer/animationlength)
+                colliderObject.transform.rotation = Quaternion.Euler(0f, 0f, 360 * (animationTimer / SWEEP_ANIM_LEN));
+
                 break;
             case AttackPhase.Idle:
                 if (animationTimer >= 2.0f)
